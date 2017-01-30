@@ -5,7 +5,8 @@
   "main": "server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack -w & nodemon server/app.js"
+    "start": "webpack -w & nodemon server/app.js",
+    "seed": "node db/seed"
   },
   "repository": {
     "type": "git",

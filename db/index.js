@@ -1,20 +1,21 @@
 const chalk = require('chalk');
-const Sequelize = require('sequelize');
+const db = require('./db');
+// pull in models to database
+require('./models');
 
-// db server constant(s)
-const dbName = 'YOUR_PROJECT_NAME_HERE';
-// +(process.env.NODE_ENV === 'testing' ? '_test' : '');
-const url = process.env.DATABASE_URL || `postgres://localhost:5432/${dbName}`;
+// Sync the db, creating it if necessary
+const isTest = process.env.NODE_ENV === 'testing';
+const sync = (force = isTest) => {
+  return db.sync({ force })
+    .then(ok => console.log(chalk.green(`Synced ${db.config.database} database`)))
+    .catch(fail => {
+      console.log(chalk.yellow(`Creating ${db.config.database} database...`))
+      return new Promise((resolve, reject) =>
+        require('child_process').exec(`createdb "${db.config.database}"`, resolve)
+      ).then(() => sync(true))
+    })
+}
 
-// notify the user we're about to do it
-console.log(chalk.yellow(`Opening database connection to ${url}`))
-
-// init the db
-const db = new Sequelize(url, {
-  define: {
-    freezeTableName: true   // don't go changing my table names sequeliez!
-  },
-  logging: false
-});
+db.didSync = sync();
 
 module.exports = db;
