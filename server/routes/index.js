@@ -8,7 +8,9 @@ const db = require('../../db')
 
 api
   .get('/heartbeat', (req, res) => res.send({ok: true,}))
-  .use('/activity', require('./activity'));
+  .use('/activity', require('./activity'))
+  .use('/relationship', require('./relationship'))
+  .use('/user', require('./user'))
 
 
 
