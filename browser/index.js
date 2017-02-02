@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import injectTapEventPlugin from "react-tap-event-plugin";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import store from './store';
 
 // allows onTapTouch() to work for React Components
@@ -20,30 +19,23 @@ import ActivityInfo from './components/ActivityInfo';
 
 /*--------- ACTION CREATORS --------- */
 import {fetchRelationships} from './reducers/relationships';
-import {fetchActivitiesByRelationship} from './reducers/activities';
 import {fetchSelectedRelationship} from './reducers/selectedRelationship';
 
 /*--------- ON-ENTER HOOKS ---------- */
 
 const onHomepageEnter = () => {
-	store.dispatch(fetchRelationships());
-}
-
-const onActivityInfoEnter = ({ params }) => {
-	store.dispatch(fetchActivitiesByRelationship({ relationshipId: params.id }));
-	store.dispatch(fetchSelectedRelationship({ relationshipId: params.id }))
+	store.dispatch(fetchRelationships())
 }
 
 ReactDOM.render(
   <Provider store={store}>
-		<MuiThemeProvider>
 	    <Router history={hashHistory}>
 				<Route component={Root}>
-					<Route path="/" component={Homepage} onEnter={onHomepageEnter}/>
 					<IndexRoute component={Homepage}/>
-					<Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter}/>
+					<Route path="/" component={Homepage} onEnter={onHomepageEnter}>
 				</Route>
-			</Router>
-		</MuiThemeProvider>
+				<Route path="/relationships/:id/activities" component={ActivityInfo} onEnter={}/>
+			</Route>
+		</Router>
   </Provider>,
   document.getElementById('app'));
