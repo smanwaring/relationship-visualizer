@@ -22,7 +22,6 @@ activityRouter.get('/:activityID', (req, res, next) => {
 
 // get all activities by relationship
 activityRouter.get('/relationship/:relationshipID', (req, res, next) => {
-  console.log(req.params.relationshipID)
   db.model('activity').findAll({
     where: { relationshipId: req.params.relationshipID }
   })

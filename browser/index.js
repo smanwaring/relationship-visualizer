@@ -21,6 +21,7 @@ import ActivityInfo from './components/ActivityInfo';
 /*--------- ACTION CREATORS --------- */
 import {fetchRelationships} from './reducers/relationships';
 import {fetchActivitiesByRelationship} from './reducers/activities';
+import {fetchSelectedRelationship} from './reducers/selectedRelationship';
 
 /*--------- ON-ENTER HOOKS ---------- */
 
@@ -30,6 +31,7 @@ const onHomepageEnter = () => {
 
 const onActivityInfoEnter = ({ params }) => {
 	store.dispatch(fetchActivitiesByRelationship({ relationshipId: params.id }));
+	store.dispatch(fetchSelectedRelationship({ relationshipId: params.id }))
 }
 
 ReactDOM.render(

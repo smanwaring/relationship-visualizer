@@ -4,18 +4,21 @@ import { connect } from 'react-redux';
 class ActivityInfo extends Component {
   
   render() {
-    const { activities, relationship } = this.props;
+    const { activities, selectedRelationship } = this.props;
     return (
-      <div>
+      <div className="container">
+        <div className="row">
+        <h3>{selectedRelationship.name}</h3>
         {
           activities.map((activity, i) => (
-            <div key={i}>
-              <p>{activity.type}</p>
-              <p>{activity.date}</p>
-              <p>{activity.score}</p>
+            <div key={i} className="col l4 m6 s12">
+              <p>Type: {activity.type}</p>
+              <p>Date: {activity.date}</p>
+              <p>Score: {activity.score}</p>
             </div>
           ))
         }
+        </div>
       </div>
     )
   }
@@ -23,10 +26,10 @@ class ActivityInfo extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-function mapStateToProps({activities, relationships}){
+function mapStateToProps({activities, selectedRelationship}){
 	return {
     activities, 
-    relationships
+    selectedRelationship
 	};
 }
 

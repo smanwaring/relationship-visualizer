@@ -11,10 +11,8 @@ export const setActivities = (activities) => ({
 
 // async action creators
 export const fetchActivitiesByRelationship = ({relationshipId}) => dispatch => {
-  console.log(relationshipId)
   axios.get(`/api/activity/relationship/${relationshipId}`)
   .then(activities => {
-    console.log(activities.data)
     dispatch(setActivities(activities.data));
   })
 }
