@@ -1,13 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Bubble from './Bubble';
 
 
 class Homepage extends React.Component {
 
     render() {
+        const { relationships } = this.props;
         return (
             <div>
                 <h1> Hello World! </h1>
+                {
+                    relationships.map((relationship, i) => (
+                        <Bubble 
+                        key={i}
+                        relationship={relationship}
+                        />
+                    ))
+                }
             </div>
         );
     }
@@ -15,8 +25,9 @@ class Homepage extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-function mapStateToProps(state){
+function mapStateToProps({ relationships }){
 	return {
+        relationships
 	};
 }
 

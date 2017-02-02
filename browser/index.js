@@ -12,13 +12,20 @@ import store from './store';
 import Root from './components/Root';
 import Homepage from './components/Homepage';
 
+/*--------- ACTION CREATORS --------- */
+import {fetchRelationships} from './reducers/relationships';
 
+/*--------- ON-ENTER HOOKS ---------- */
+
+const onHomepageEnter = () => {
+	store.dispatch(fetchRelationships())
+}
 
 ReactDOM.render(
   <Provider store={store}>
 	    <Router history={hashHistory}>
 			<Route component={Root}>
-				<Route path="/" component={Homepage}/>
+				<Route path="/" component={Homepage} onEnter={onHomepageEnter}/>
 				<IndexRoute component={Homepage}/>
 			</Route>
 		</Router>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {combineReducers} from 'redux';
+import relationships from './reducers/relationships';
 
 const testReducer = function(state = '', action) {
 	switch (action.type){
@@ -13,6 +14,7 @@ const testReducer = function(state = '', action) {
 
 const rootReducer = combineReducers({
     test: testReducer,
+	relationships
 });
 
 export default rootReducer;
