@@ -5,7 +5,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import injectTapEventPlugin from "react-tap-event-plugin";
 import store from './store';
+
+// allows onTapTouch() to work for React Components
+injectTapEventPlugin();
 
 
 /*------ COMPONENTS/CONTAINERS ------ */
