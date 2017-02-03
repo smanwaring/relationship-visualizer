@@ -12,17 +12,18 @@ class Homepage extends React.Component {
         // const { user_id } = this.props.auth.getProfile();
         const { relationships } = this.props;
         return (
-            <div>
-                <Logout auth={this.props.auth}/>
-                <h1> Hello World! </h1>
-                {
-                    relationships.map((relationship, i) => (
-                        <Bubble 
-                        key={i}
-                        relationship={relationship}
-                        />
-                    ))
-                }
+
+            <div className="container">
+              <Logout auth={this.props.auth}/>
+                <div className="row">
+                    {
+                        relationships.map((relationship, i) => (
+                            <div className="col l4 m6 s12" key={i}>
+                                <Bubble relationship={relationship} />
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
         );
     }

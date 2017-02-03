@@ -2,19 +2,13 @@ import React from 'react';
 import {combineReducers} from 'redux';
 import relationships from './reducers/relationships';
 import loggedInUser from './reducers/login';
-
-const testReducer = function(state = '', action) {
-	switch (action.type){
-		case 'test':
-			return action.payload;
-		default: return state;
-	}
-};
+import activities from './reducers/activities';
+import selectedRelationship from './reducers/selectedRelationship';
 
 const rootReducer = combineReducers({
-    test: testReducer,
 	relationships,
-	loggedInUser,
+	activities,
+	selectedRelationship
 });
 
 export default rootReducer;
