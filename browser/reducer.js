@@ -1,6 +1,7 @@
 import React from 'react';
 import {combineReducers} from 'redux';
 import relationships from './reducers/relationships';
+import loggedInUser from './reducers/login';
 
 const testReducer = function(state = '', action) {
 	switch (action.type){
@@ -10,11 +11,10 @@ const testReducer = function(state = '', action) {
 	}
 };
 
-
-
 const rootReducer = combineReducers({
     test: testReducer,
-	relationships
+	relationships,
+	loggedInUser,
 });
 
 export default rootReducer;
