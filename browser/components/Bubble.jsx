@@ -15,6 +15,7 @@ class Bubble extends Component {
   
   render() {
     const { relationship } = this.props;
+    console.log(relationship.id);
     return (
       <div>
         <h4>BUBBLE!</h4>
@@ -23,8 +24,8 @@ class Bubble extends Component {
         <p>Score: {relationship.score}</p>
         <Link to={`/relationship/${relationship.id}/activities`}><RaisedButton label="View Activities" primary={true} /></Link>
         <RaisedButton label="Add Activity" secondary={true} onTouchTap={() => this.setState({addForm: !this.state.addForm})}/>
-        {
-          this.state.addForm ? <AddActivityForm /> : null
+          {
+            this.state.addForm ? <AddActivityForm relationshipId={relationship.id} /> : null
           }
       </div>
     )
