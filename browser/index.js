@@ -1,4 +1,3 @@
-
 'use strict';
 
 import React from 'react';
@@ -39,8 +38,8 @@ ReactDOM.render(
 		<MuiThemeProvider>
 	    <Router history={hashHistory}>
 				<Route component={Root}>
-					<Route path="/" component={Homepage} onEnter={onHomepageEnter}/>
 					<IndexRoute component={Homepage}/>
+					<Route path="/" component={Homepage} onEnter={onHomepageEnter} />
 					<Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter}/>
 				</Route>
 			</Router>
