@@ -1,7 +1,7 @@
 const db = require('../../db');
 
 const seedUser = () => db.Promise.each([
-    { name: 'Phillip Manwaring' }
+    { name: 'Phillip Manwaring', email: 'phil@example.com' }
 ], user => db.model('user').create(user));
 
 const seedRelationship = () => db.Promise.each([

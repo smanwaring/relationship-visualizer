@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Bubble from './Bubble';
+import AddRelationshipForm from './forms/AddRelationshipForm';
+import RaisedButton from 'material-ui/RaisedButton';
 import { hashHistory } from 'react-router';
 import { setLoggedInUser, clearLoggedInUser } from '../reducers/login';
 import Logout from './Logout';

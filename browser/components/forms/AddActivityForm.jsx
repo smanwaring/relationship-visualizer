@@ -45,7 +45,7 @@ class AddActivityForm extends Component {
   render() {
     let { type, date, time } = this.state;
     return (
-      <div>
+      <div autoFocus="false">
           <SelectField 
             value={this.state.type} 
             onChange={this.handleTypeChange}
