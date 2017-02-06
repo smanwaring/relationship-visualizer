@@ -5,10 +5,12 @@ import loggedInUser from './reducers/login';
 import activities from './reducers/activities';
 import selectedRelationship from './reducers/selectedRelationship';
 
+
 const rootReducer = combineReducers({
 	relationships,
 	activities,
-	selectedRelationship
+	selectedRelationship,
+	loggedInUser
 });
 
 export default rootReducer;
