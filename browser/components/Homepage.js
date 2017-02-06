@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import Bubble from './Bubble';
 import AddRelationshipForm from './forms/AddRelationshipForm';
 import RaisedButton from 'material-ui/RaisedButton';
-import { hashHistory } from 'react-router';
-import { setLoggedInUser, clearLoggedInUser } from '../reducers/login';
-import Logout from './Logout';
+import MainMenu from './MainMenu';
 
 
 class Homepage extends React.Component {
@@ -13,9 +11,10 @@ class Homepage extends React.Component {
     render() {
         const { relationships } = this.props;
         return (
-
+        <div>
+        <div className="slide-out-menu"><MainMenu auth={this.props.auth}/>
+        </div>
             <div className="container">
-              <Logout auth={this.props.auth} />
                 <div className="row">
                     {
                         relationships.map((relationship, i) => (
@@ -26,6 +25,7 @@ class Homepage extends React.Component {
                     }
                 </div>
             </div>
+        </div>
         );
     }
 }

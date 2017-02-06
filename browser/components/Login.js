@@ -11,7 +11,6 @@ class Login extends React.Component {
 
     login(){
         this.props.auth.login();
-        // hashHistory.push('/home');
     }
 
   render() {
