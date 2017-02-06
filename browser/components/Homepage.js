@@ -9,8 +9,6 @@ import Logout from './Logout';
 class Homepage extends React.Component {
 
     render() {
-        const user = this.props.auth.getProfile();
-        console.log("hey this is the user", user);
         const { relationships } = this.props;
         return (
 

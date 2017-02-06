@@ -22,7 +22,7 @@ userRouter.get('/:userID', (req, res, next) => {
 
 
 // when a user logs in with google, find or create that user
-userRouter.post('/user', (req, res, next) => {
+userRouter.post('/', (req, res, next) => {
   db.model('user').findOrCreate({
     where: {
       email: req.body.email,

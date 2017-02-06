@@ -5,31 +5,29 @@ const SET_LOGGEDIN_USER = 'SET_LOGGEDIN_USER';
 const CLEAR_LOGGED_IN_USER = 'CLEAR_LOGGED_IN_USER';
 
 // sync action creators
-export const setLoggedInUser = (userInfo) => ({
+export const setLoggedInUser = (foundUser) => ({
   type: SET_LOGGEDIN_USER,
-  userInfo
+  foundUser
 });
 
 export const clearLoggedInUser = () => ({
   type: CLEAR_LOGGED_IN_USER
 });
 
-
-// login reducer
 // async action creators
-export const findOrCreateUser = (userDetails) => dispatch => {
-  console.log("here are the user detials", userDetails);
-  axios.post('/api/user/user', userDetails)
+export const findOrCreateUser = userDetails => dispatch => {
+  axios.post('/api/user', userDetails)
+  .then(res => res.data)
   .then(foundUser => {
-    console.log('here is the user', foundUser);
+    dispatch(setLoggedInUser(foundUser));
   });
 };
 
-
-const reducer = (state = {}, { type, userInfo }) => {
+// login reducer
+const reducer = (state = {}, { type, foundUser }) => {
   switch (type) {
     case SET_LOGGEDIN_USER:
-      return userInfo;
+      return foundUser;
     case CLEAR_LOGGED_IN_USER:
       return {};
     default:
