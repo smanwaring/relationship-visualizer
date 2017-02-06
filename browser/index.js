@@ -22,7 +22,7 @@ import Login from './components/Login';
 import ActivityInfo from './components/ActivityInfo';
 
 /*--------- ACTION CREATORS --------- */
-import { fetchRelationships } from './reducers/relationships';
+import { fetchRelationshipsByUser } from './reducers/relationships';
 import { fetchActivitiesByRelationship } from './reducers/activities';
 import { fetchSelectedRelationship } from './reducers/selectedRelationship';
 import { findOrCreateUser } from './reducers/login';
@@ -38,8 +38,10 @@ const requireAuth = (nextState, replace) => {
 				email: user.email,
 				authId: user.user_id
 		};
-		store.dispatch(findOrCreateUser(userDetails));
-		store.dispatch(fetchRelationships());
+		store.dispatch(findOrCreateUser(userDetails))
+		.then(() => {
+			store.dispatch(fetchRelationshipsByUser({ id: store.getState().loggedInUser.id }));
+		})
   }
 };
 

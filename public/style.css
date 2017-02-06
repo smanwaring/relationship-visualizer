@@ -2,35 +2,6 @@
 *
 *
 *
-ADD ACTIVITY MODAL
-*
-*
-*
-*/
-
-
-@keyframes modal {
-    0%   { top:45%; opacity: 0;}
-    100% { top:50%; opacity: 1;}
-}
-
-.activity-form {
-    width: 30%;
-    height: 30%;
-    position: relative;
-    animation-name: modal;
-    animation-duration: 500ms;
-    padding: 10px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    opacity: 1;
-
-
-/*
-*
-*
-*
 LOGIN PAGE
 *
 *
