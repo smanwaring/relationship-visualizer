@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Bubble from './Bubble';
 import { browserHistory } from 'react-router';
-import { setLoggedInUser, clearLoggedInUser } from '../reducers/login';
+import { clearLoggedInUser } from '../reducers/login';
 
 
 class Logout extends React.Component {
@@ -10,9 +10,10 @@ class Logout extends React.Component {
         super(props);
         this.logout = this.logout.bind(this);
     }
-    // log a user out of auth0 
+    // log a user out of auth0 and clear loggedInUserState
     logout() {
     this.props.auth.logout();
+    this.props.clearUserState();
     browserHistory.replace('/login');
   }
 
@@ -26,4 +27,24 @@ class Logout extends React.Component {
 }
 
 
-export default Logout;
+/* -----------------    CONTAINER     ------------------ */
+
+function mapStateToProps({ loggedInUser }){
+	return {
+        loggedInUser
+	};
+}
+
+function mapDispatchToProps(dispatch){
+	return {
+        clearUserState: function(){
+            dispatch(clearLoggedInUser());
+        }
+	};
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Logout);
+

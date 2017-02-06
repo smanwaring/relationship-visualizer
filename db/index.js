@@ -7,7 +7,7 @@ require('./models');
 const isTest = process.env.NODE_ENV === 'testing';
 
 const sync = (force = isTest) => {
-  return db.sync({ force })
+  return db.sync({ force})
     .then(ok => console.log(chalk.green(`Synced ${db.config.database} database`)))
     .catch(fail => {
       console.error(fail);

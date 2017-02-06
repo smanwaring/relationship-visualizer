@@ -17,7 +17,7 @@ class AddActivityForm extends Component {
       time: null,
       relationshipId: this.props.relationshipId,
       score: 10 // hard coded for now, will change when we decide scores
-    }
+    };
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
@@ -25,15 +25,15 @@ class AddActivityForm extends Component {
   }
 
   handleTypeChange(event, index, value) {
-    this.setState({type: value})
+    this.setState({type: value});
   }
 
   handleDateChange(event, date) {
-    this.setState({ date })
+    this.setState({ date });
   }
 
   handleTimeChange(event, time) {
-    this.setState({ time })
+    this.setState({ time });
   }
 
   submitForm() {

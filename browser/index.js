@@ -22,30 +22,31 @@ import Login from './components/Login';
 import ActivityInfo from './components/ActivityInfo';
 
 /*--------- ACTION CREATORS --------- */
-import {fetchRelationships} from './reducers/relationships';
-import {fetchActivitiesByRelationship} from './reducers/activities';
-import {fetchSelectedRelationship} from './reducers/selectedRelationship';
+import { fetchRelationships } from './reducers/relationships';
+import { fetchActivitiesByRelationship } from './reducers/activities';
+import { fetchSelectedRelationship } from './reducers/selectedRelationship';
+import { findOrCreateUser } from './reducers/login';
 
 /*--------- ON-ENTER HOOKS ---------- */
-// const onHomepageEnter = () => {
-// 	store.dispatch(fetchRelationships())
-// };
-
-// validate authentication for private routes
 const requireAuth = (nextState, replace) => {
   if (!auth.loggedIn()) {
-		console.log('not logged in');
     replace({ pathname: '/login' });
   } else {
-		console.log('logged in');
+		const user = auth.getProfile();
+		const userDetails = {
+				name: `${user.given_name} ${user.family_name}`,
+				email: user.email,
+				authId: user.user_id
+		};
+		store.dispatch(findOrCreateUser(userDetails));
 		store.dispatch(fetchRelationships());
   }
 };
 
 const onActivityInfoEnter = ({ params }) => {
 	store.dispatch(fetchActivitiesByRelationship({ relationshipId: params.id }));
-	store.dispatch(fetchSelectedRelationship({ relationshipId: params.id }))
-}
+	store.dispatch(fetchSelectedRelationship({ relationshipId: params.id }));
+};
 
 ReactDOM.render(
   <Provider store={store}>
@@ -54,7 +55,7 @@ ReactDOM.render(
 			<Route path="/" component={Root} auth={auth}>
 				<Route path="/home" component={Homepage} onEnter={requireAuth} />
 				<Route path="/login" component={Login} />
-        <Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter}/>
+        <Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter} />
 				<IndexRedirect to="/login" />
 			</Route>
 		</Router>
