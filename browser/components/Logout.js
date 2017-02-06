@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Bubble from './Bubble';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { setLoggedInUser, clearLoggedInUser } from '../reducers/login';
 
 
@@ -13,7 +13,7 @@ class Logout extends React.Component {
     // log a user out of auth0 
     logout() {
     this.props.auth.logout();
-    hashHistory.push('/login');
+    browserHistory.replace('/login');
   }
 
     render() {

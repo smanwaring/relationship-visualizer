@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, hashHistory, IndexRoute, IndexRedirect } from 'react-router';
+import { Router, Route, hashHistory, IndexRoute, IndexRedirect, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import store from './store';
@@ -34,8 +34,10 @@ import {fetchSelectedRelationship} from './reducers/selectedRelationship';
 // validate authentication for private routes
 const requireAuth = (nextState, replace) => {
   if (!auth.loggedIn()) {
+		console.log('not logged in');
     replace({ pathname: '/login' });
   } else {
+		console.log('logged in');
 		store.dispatch(fetchRelationships());
   }
 };
@@ -48,12 +50,12 @@ const onActivityInfoEnter = ({ params }) => {
 ReactDOM.render(
   <Provider store={store}>
 		<MuiThemeProvider>
-	    <Router history={hashHistory}>
+	    <Router history={browserHistory}>
 			<Route path="/" component={Root} auth={auth}>
 				<Route path="/home" component={Homepage} onEnter={requireAuth} />
 				<Route path="/login" component={Login} />
         <Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter}/>
-				<IndexRedirect to="/home" />
+				<IndexRedirect to="/login" />
 			</Route>
 		</Router>
    </MuiThemeProvider>
