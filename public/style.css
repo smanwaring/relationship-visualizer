@@ -48,3 +48,22 @@ LOGIN PAGE
   border-radius: 3px;
   text-align: center;
 }
+
+
+/*
+*
+*
+*
+SLIDE OUT MENU
+*
+*
+*
+*/
+
+.slide-out-menu{
+    margin: 10px 0px 0px 10px;
+}
+
+.slide-out-menu:hover{
+    color: lightblue;
+}

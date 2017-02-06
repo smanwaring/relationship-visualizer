@@ -11,9 +11,10 @@ class Homepage extends React.Component {
     render() {
         const { relationships } = this.props;
         return (
-
+        <div>
+        <div className="slide-out-menu"><MainMenu auth={this.props.auth}/>
+        </div>
             <div className="container">
-                <MainMenu auth={this.props.auth} />
                 <div className="row">
                     {
                         relationships.map((relationship, i) => (
@@ -24,6 +25,7 @@ class Homepage extends React.Component {
                     }
                 </div>
             </div>
+        </div>
         );
     }
 }

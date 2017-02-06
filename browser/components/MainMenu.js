@@ -42,7 +42,7 @@ class MainMenu extends React.Component {
                     <li><a className="waves-effect">Settings</a></li>
                     <li><a className="waves-effect" onClick={this.logout}>Logout</a></li>
                 </ul>
-                <button data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></button>
+                <div data-activates="slide-out" className="button-collapse"><i className="medium material-icons">menu</i></div>
             </div>
         );
     }
