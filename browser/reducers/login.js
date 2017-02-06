@@ -16,7 +16,7 @@ export const clearLoggedInUser = () => ({
 
 // async action creators
 export const findOrCreateUser = userDetails => dispatch => {
-  axios.post('/api/user', userDetails)
+  return axios.post('/api/user', userDetails)
   .then(res => res.data)
   .then(foundUser => {
     dispatch(setLoggedInUser(foundUser));
