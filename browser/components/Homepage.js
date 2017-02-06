@@ -9,13 +9,11 @@ import Logout from './Logout';
 class Homepage extends React.Component {
 
     render() {
-        const user = this.props.auth.getProfile();
-        console.log("hey this is the user", user);
         const { relationships } = this.props;
         return (
 
             <div className="container">
-              <Logout auth={this.props.auth}/>
+              <Logout auth={this.props.auth} />
                 <div className="row">
                     {
                         relationships.map((relationship, i) => (
@@ -35,6 +33,7 @@ class Homepage extends React.Component {
 function mapStateToProps({ relationships, loggedInUser }){
 	return {
         relationships,
+        loggedInUser
 	};
 }
 
