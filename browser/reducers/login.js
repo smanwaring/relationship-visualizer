@@ -16,6 +16,16 @@ export const clearLoggedInUser = () => ({
 
 
 // login reducer
+// async action creators
+export const findOrCreateUser = (userDetails) => dispatch => {
+  console.log("here are the user detials", userDetails);
+  axios.post('/api/user/user', userDetails)
+  .then(foundUser => {
+    console.log('here is the user', foundUser);
+  });
+};
+
+
 const reducer = (state = {}, { type, userInfo }) => {
   switch (type) {
     case SET_LOGGEDIN_USER:
