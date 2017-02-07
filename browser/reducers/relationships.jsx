@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // constants
 const SET_RELATIONSHIPS = "SET_RELATIONSHIPS";
+const ADD_TO_SCORE = "ADD_TO_SCORE";
 
 // sync action creators
 export const setRelationships = (relationships) => ({
@@ -12,6 +13,17 @@ export const setRelationships = (relationships) => ({
 // async action creators
 export const fetchRelationshipsByUser = ({ id }) => dispatch => {
   axios.get(`/api/relationship/user/${id}`)
+  .then(relationships => {
+    dispatch(setRelationships(relationships.data));
+  })
+}
+
+export const incrementScore = (relationship, user) => dispatch => {
+  console.log("HIT ACTION CREATOR");
+  axios.put(`api/relationship/${relationship.id}`, { score: relationship.score + 5 })
+  .then(relationship => {
+    return axios.get(`/api/relationship/user/${user.id}`)
+  })
   .then(relationships => {
     dispatch(setRelationships(relationships.data));
   })

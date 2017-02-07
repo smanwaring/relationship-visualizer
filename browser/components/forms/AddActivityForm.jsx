@@ -16,7 +16,7 @@ class AddActivityForm extends Component {
       date: null,
       time: null,
       relationshipId: this.props.relationshipId,
-      score: 10 // hard coded for now, will change when we decide scores
+      score: 5 // hard coded for now, will change when we decide scores
     };
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
