@@ -2,6 +2,36 @@
 *
 *
 *
+ADD ACTIVITY MODAL
+*
+*
+*
+*/
+
+
+@keyframes modal {
+    0%   { top:45%; opacity: 0;}
+    100% { top:50%; opacity: 1;}
+}
+
+.activity-form {
+    width: 30%;
+    height: 30%;
+    position: relative;
+    animation-name: modal;
+    animation-duration: 500ms;
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    opacity: 1;
+}
+
+
+/*
+*
+*
+*
 LOGIN PAGE
 *
 *
@@ -20,30 +50,19 @@ LOGIN PAGE
   border-radius: 3px;
   text-align: center;
 }
-
 /*
 *
 *
 *
-BUBBLES
+SLIDE OUT MENU
 *
 *
 *
 */
-
-/*.circle-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: blue;
-  
+.slide-out-menu{
+    margin: 10px 0px 0px 10px;
 }
 
-.circle {
-  
-}*/
-/*
-.relationship-score {
-  color: white;
-  
-}*/
+.slide-out-menu:hover{
+    color: lightblue;
+}
