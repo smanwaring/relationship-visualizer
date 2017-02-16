@@ -32,8 +32,6 @@ class Bubble extends Component {
   addToScore(relationship, user) {
     this.props.incrementScore(relationship, user)
   }
-
-
   render() {
     console.log(this.props.relationship.id);
     const { relationship } = this.props;
