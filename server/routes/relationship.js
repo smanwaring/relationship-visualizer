@@ -23,7 +23,8 @@ relationshipRouter.get('/:relationshipID', (req, res, next) => {
 // get all relationships by user
 relationshipRouter.get('/user/:userID', (req, res, next) => {
   db.model('relationship').findAll({
-    where: { userId: req.params.userID }
+    where: { userId: req.params.userID },
+    order: ['id']
   })
   .then(relationships => {
     res.json(relationships);
@@ -39,7 +40,7 @@ relationshipRouter.post('/', (req, res, next) => {
   .catch(next);
 })
 
-// update an relationship
+// update a relationship
 relationshipRouter.put('/:relationshipID', (req, res, next) => {
   db.model('relationship').findById(req.params.relationshipID)
   .then(relationship => {
@@ -51,7 +52,7 @@ relationshipRouter.put('/:relationshipID', (req, res, next) => {
   .catch(next);
 })
 
-// delete an relationship
+// delete a relationship
 relationshipRouter.delete('/:relationshipID', (req, res, next) => {
   db.model('relationship').findById(req.params.relationshipID)
   .then(relationship => {

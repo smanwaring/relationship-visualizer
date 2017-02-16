@@ -4,7 +4,10 @@ import {Link} from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
+import * as d3 from "d3";
 import AddActivityForm from './forms/AddActivityForm';
+import { incrementScore } from '../reducers/relationships';
+import { animateBubbles } from '../d3/bubbleD3';
 
 
 class Bubble extends Component {
@@ -13,19 +16,24 @@ class Bubble extends Component {
     this.state = {
       open: false
     }
-
-    this.handleOpen = () => {
-      this.setState({ open: true })
-    }
-
-    this.handleClose = () => {
-      this.setState({ open: false })
-    }
+    this.handleOpen = () => this.setState({ open: true }) 
+    this.handleClose = () => this.setState({ open: false });
+    this.addToScore = this.addToScore.bind(this);
   }
 
+  componentDidMount() {
+    animateBubbles(this.props.relationship);
+  }
 
-  
+  componentDidUpdate() {
+    animateBubbles(this.props.relationship);
+  }
+
+  addToScore(relationship, user) {
+    this.props.incrementScore(relationship, user)
+  }
   render() {
+    console.log(this.props.relationship.id);
     const { relationship } = this.props;
     const actions = [
       <FlatButton
@@ -38,11 +46,13 @@ class Bubble extends Component {
     return (
       <div>
         <h4>BUBBLE!</h4>
-        <p>Name: {relationship.name}</p>
         <p>Type: {relationship.type}</p>
-        <p>Score: {relationship.score}</p>
+        <svg className="circle-container" id={`score${relationship.id}-container`}>
+          <circle id={`score${relationship.id}`} style={{"fill": "steelblue"}}></circle>
+          <text id={`score${relationship.id}-name`} style={{"fill": "black" }}>{relationship.name}</text>
+        </svg>
         <Link to={`/relationship/${relationship.id}/activities`}><RaisedButton label="View Activities" primary={true} /></Link>
-        <RaisedButton label="Add Activity" secondary={true} onTouchTap={this.handleOpen}/>
+        <RaisedButton label="Add Activity" secondary={true} onTouchTap={this.handleOpen} id="addActivity"/>
           <Dialog
             title="Add an Activity"
             actions={actions}
@@ -52,6 +62,7 @@ class Bubble extends Component {
           >
             <AddActivityForm relationshipId={relationship.id} autoFocus="true"/>
           </Dialog>
+          <RaisedButton label="Increment Score" onTouchTap={() => this.addToScore(relationship, this.props.loggedInUser)} />            
         </div>
     )
   }
@@ -60,15 +71,16 @@ class Bubble extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-function mapStateToProps(state){
+function mapStateToProps({ loggedInUser }){
 	return {
+    loggedInUser
 	};
 }
 
-function mapDispatchToProps(dispatch){
-	return {
+const mapDispatchToProps = {
+    incrementScore
 	};
-}
+
 
 export default connect(
 	mapStateToProps,

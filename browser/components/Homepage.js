@@ -18,7 +18,7 @@ class Homepage extends React.Component {
                 <div className="row">
                     {
                         relationships.map((relationship, i) => (
-                            <div className="col l4 m6 s12" key={i}>
+                            <div className="col s6 m6 s12" key={i}>
                                 <Bubble relationship={relationship} />
                             </div>
                         ))
