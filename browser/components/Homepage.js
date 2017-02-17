@@ -8,34 +8,33 @@ import MainMenu from './MainMenu';
 
 class Homepage extends React.Component {
 
-    render() {
-        const { relationships } = this.props;
-        return (
-        <div>
+  render() {
+    const { relationships, selectedRelationship } = this.props;
+    console.log("HOMEPAGE!!!!", selectedRelationship)
+    return (
+      <div>
         <div className="slide-out-menu"><MainMenu auth={this.props.auth}/>
         </div>
-            <div className="container">
-                <div className="row">
-                    {
-                        relationships.map((relationship, i) => (
-                            <div className="col s6 m6 s12" key={i}>
-                                <Bubble relationship={relationship} />
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
+          <div className="container">
+            {
+              this.props.children && React.cloneElement(this.props.children, {
+                relationships,
+                selectedRelationship
+              })
+            }
         </div>
-        );
-    }
+      </div>
+    );
+  }
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
-function mapStateToProps({ relationships, loggedInUser }){
+function mapStateToProps({ relationships, selectedRelationship, loggedInUser }){
 	return {
-        relationships,
-        loggedInUser
+    relationships,
+    selectedRelationship,
+    loggedInUser
 	};
 }
 

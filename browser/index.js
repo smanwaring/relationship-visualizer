@@ -20,9 +20,11 @@ import Root from './components/Root';
 import Homepage from './components/Homepage';
 import Login from './components/Login';
 import ActivityInfo from './components/ActivityInfo';
+import AllBubbles from './components/AllBubbles';
+import OneBubbleContainer from './components/OneBubbleContainer';
 
 /*--------- ACTION CREATORS --------- */
-import { fetchRelationshipsByUser } from './reducers/relationships';
+import { fetchRelationshipsByUser, fetchOneRelationship } from './reducers/relationships';
 import { fetchActivitiesByRelationship } from './reducers/activities';
 import { fetchSelectedRelationship } from './reducers/selectedRelationship';
 import { findOrCreateUser } from './reducers/login';
@@ -50,14 +52,21 @@ const onActivityInfoEnter = ({ params }) => {
 	store.dispatch(fetchSelectedRelationship({ relationshipId: params.id }));
 };
 
+// const onOneRelationshipEnter = ({ params }) => {
+// 	store.dispatch(fetchSelectedRelationship({ relationshipId: params.id }))
+// }
+
 ReactDOM.render(
   <Provider store={store}>
 		<MuiThemeProvider>
 	    <Router history={browserHistory}>
 			<Route path="/" component={Root} auth={auth}>
-				<Route path="/home" component={Homepage} onEnter={requireAuth} />
+				<Route path="/home" component={Homepage} onEnter={requireAuth}>
+					<Route path="/relationships" component={AllBubbles} />
+					<Route path="/relationship/:id" component={OneBubbleContainer} />
+        	<Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter} />
+				</Route>
 				<Route path="/login" component={Login} />
-        <Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter} />
 				<IndexRedirect to="/login" />
 			</Route>
 		</Router>
