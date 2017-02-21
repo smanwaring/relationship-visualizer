@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { animateBubbles, expandBubble } from '../d3/bubbleD3';
 
 // constants
 const SET_RELATIONSHIPS = "SET_RELATIONSHIPS";
@@ -20,10 +21,11 @@ export const fetchRelationshipsByUser = ({ id }) => dispatch => {
 }
 
 export const incrementScore = (relationship, user) => dispatch => {
-  console.log("HIT ACTION CREATOR");
-  axios.put(`api/relationship/${relationship.id}`, { score: relationship.score + 5 })
+  axios.put(`/api/relationship/${relationship.id}`, { score: relationship.score + 5 })
   .then(relationship => {
-    return axios.get(`/api/relationship/user/${user.id}`)
+    animateBubbles(relationship.data);
+    expandBubble(relationship.data);
+    return axios.get(`/api/relationship/user/${user.id}`);
   })
   .then(relationships => {
     dispatch(setRelationships(relationships.data));
