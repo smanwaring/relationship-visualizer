@@ -2,7 +2,7 @@ import * as d3 from "d3";
 
 export const animateBubbles = (relationship) => {
 
-    d3.select(`#score${relationship.id}`)
+  d3.select(`#score${relationship.id}`)
     .transition()
     .delay(1000)
     .duration(500)

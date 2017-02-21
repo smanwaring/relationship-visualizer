@@ -29,25 +29,26 @@ class BubbleMenu extends Component {
         onTouchTap={this.handleClose}
       />
     ]
-    const { relationship, loggedInUser, addToScore } = this.props;
+    console.log("PROPS!!!", this.props);
+    const { relationship, loggedInUser, incrementScore } = this.props;
     return (
       <div>
-          <Link to={`/relationship/${relationship.id}/activities`}>
-            <RaisedButton label="View Activities" primary={true} />
-          </Link>
-          <RaisedButton label="Add Activity" secondary={true} onTouchTap={this.handleOpen} id="addActivity"/>
-            <Dialog
-              title="Add an Activity"
-              actions={actions}
-              modal={false}
-              open={this.state.open}
-              onRequestClose={this.handleClose}
-            >
-              <AddActivityForm relationshipId={relationship.id} autoFocus="true"/>
-            </Dialog>
-            <RaisedButton 
-              label="Increment Score" 
-              onTouchTap={() => addToScore(relationship, loggedInUser)} />   
+        <Link to={`/relationship/${relationship.id}/activities`}>
+          <RaisedButton label="View Activities" primary={true} />
+        </Link>
+        <RaisedButton label="Add Activity" secondary={true} onTouchTap={this.handleOpen} id="addActivity"/>
+          <Dialog
+            title="Add an Activity"
+            actions={actions}
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleClose}
+          >
+            <AddActivityForm relationshipId={relationship.id} autoFocus="true"/>
+          </Dialog>
+          <RaisedButton 
+            label="Increment Score" 
+            onTouchTap={() => incrementScore(relationship, loggedInUser)} />   
       </div>
     )
   }

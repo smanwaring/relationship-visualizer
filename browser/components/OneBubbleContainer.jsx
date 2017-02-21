@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Bubble from './Bubble';
 import BubbleMenu from './BubbleMenu';
 import { expandBubble } from '../d3/bubbleD3';
+import { incrementScore } from '../reducers/relationships';
+
 
 
 class OneBubbleContainer extends Component {
@@ -11,10 +13,14 @@ class OneBubbleContainer extends Component {
   }
 
   render() {
+    const { selectedRelationship, loggedInUser, incrementScore } = this.props;
     return (
       <div>
         <Bubble relationship={this.props.selectedRelationship}/>
-        <BubbleMenu relationship={this.props.selectedRelationship}/>
+        <BubbleMenu 
+          relationship={selectedRelationship}
+          loggedInUser={loggedInUser}
+          incrementScore={incrementScore}/>
       </div>
     )
   }
@@ -22,7 +28,12 @@ class OneBubbleContainer extends Component {
 
 
 const mapStateToProps = state => ({
-  selectedRelationship: state.selectedRelationship
+  selectedRelationship: state.selectedRelationship,
+  loggedInUser: state.loggedInUser
 })
 
-export default connect(mapStateToProps)(OneBubbleContainer);
+const mapDispatchToProps = dispatch => ({
+  incrementScore: (relationship, loggedInUser) => dispatch(incrementScore(relationship, loggedInUser))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(OneBubbleContainer);
