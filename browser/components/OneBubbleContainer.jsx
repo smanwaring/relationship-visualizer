@@ -10,12 +10,7 @@ class OneBubbleContainer extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    expandBubble(this.props.selectedRelationship)
-  }
-
   render() {
-
     return (
       <div>
         <Bubble relationship={this.props.selectedRelationship}/>
@@ -26,4 +21,8 @@ class OneBubbleContainer extends Component {
 }
 
 
-export default connect()(OneBubbleContainer);
+const mapStateToProps = state => ({
+  selectedRelationship: state.selectedRelationship
+})
+
+export default connect(mapStateToProps)(OneBubbleContainer);

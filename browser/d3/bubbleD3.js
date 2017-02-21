@@ -2,14 +2,13 @@ import * as d3 from "d3";
 
 export const animateBubbles = (relationship) => {
 
-  console.log("D3", relationship);
-      d3.select(`#score${relationship.id}`)
-      .transition()
-      .delay(1000)
-      .duration(500)
-      .attr("r", relationship.score * 4)
-      .attr("cx", relationship.score * 5)
-      .attr("cy", relationship.score * 5)
+    d3.select(`#score${relationship.id}`)
+    .transition()
+    .delay(1000)
+    .duration(500)
+    .attr("r", relationship.score * 4)
+    .attr("cx", relationship.score * 5)
+    .attr("cy", relationship.score * 5)
 
 
     d3.select(`#score${relationship.id}-container`).transition()
@@ -27,12 +26,12 @@ export const animateBubbles = (relationship) => {
 
 export const expandBubble = (relationship) => {
   d3.select(`#score${relationship.id}`)
-  .transition()
-  .delay(1000)
-  .duration(500)
-  .attr("r", relationship.score * 8)
-  .attr("cx", relationship.score * 10)
-  .attr("cy", relationship.score * 10)
+    .transition()
+    .delay(1000)
+    .duration(500)
+    .attr("r", relationship.score * 8)
+    .attr("cx", relationship.score * 10)
+    .attr("cy", relationship.score * 10)
 
   d3.select(`#score${relationship.id}-container`).transition()
     .duration(1000)

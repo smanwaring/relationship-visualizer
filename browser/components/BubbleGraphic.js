@@ -2,6 +2,7 @@ import React from 'react';
 
 export default ({ relationship, toggleMenu, showGraphic, loadRelationship }) => {
 
+  const {circleStyle} = style;
   return (
     <svg 
     className="circle-container" 
@@ -9,7 +10,7 @@ export default ({ relationship, toggleMenu, showGraphic, loadRelationship }) => 
     onClick={loadRelationship}>
       <circle 
         id={`score${relationship.id}`} 
-        style={{"fill": "steelblue"}} 
+        style={circleStyle} 
         hidden={!showGraphic}>
       </circle>
       <text 
@@ -20,4 +21,10 @@ export default ({ relationship, toggleMenu, showGraphic, loadRelationship }) => 
       </text>
     </svg>
   )
+}
+
+const style = {
+  circleStyle: {
+    "fill": "steelblue"
+  }
 }

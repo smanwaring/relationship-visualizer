@@ -13,7 +13,7 @@ export const setRelationships = (relationships) => ({
 
 // async action creators
 export const fetchRelationshipsByUser = ({ id }) => dispatch => {
-  axios.get(`/api/relationship/user/${id}`)
+  return axios.get(`/api/relationship/user/${id}`)
   .then(relationships => {
     dispatch(setRelationships(relationships.data));
   })

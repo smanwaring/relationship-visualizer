@@ -20,15 +20,6 @@ class Bubble extends Component {
     this.loadRelationship = this.loadRelationship.bind(this);
   }
 
-  componentDidMount() {
-    console.log(this.props.relationship);
-    animateBubbles(this.props.relationship);
-  }
-
-  componentDidUpdate() {
-    animateBubbles(this.props.relationship);
-  }
-
   addToScore(relationship, user) {
     this.props.incrementScore(relationship, user)
   }

@@ -10,7 +10,6 @@ class Homepage extends React.Component {
 
   render() {
     const { relationships, selectedRelationship } = this.props;
-    console.log("HOMEPAGE!!!!", selectedRelationship)
     return (
       <div>
         <div className="slide-out-menu"><MainMenu auth={this.props.auth}/>
