@@ -11,14 +11,14 @@ export const setSelectedRelationship = (relationship) => ({
 
 // async action creators
 export const fetchSelectedRelationship = ({relationshipId}) => dispatch => {
-  axios.get(`/api/relationship/${relationshipId}`)
+  return axios.get(`/api/relationship/${relationshipId}`)
   .then(relationship => {
     dispatch(setSelectedRelationship(relationship.data));
   })
 }
 
 // initial state
-const initialState = [];
+const initialState = {};
 
 // reducer
 const reducer = (state=initialState, { type, relationship }) => {

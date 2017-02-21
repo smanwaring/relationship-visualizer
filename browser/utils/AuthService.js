@@ -47,7 +47,7 @@ export default class AuthService extends EventEmitter {
     // Triggers profile_updated event to update the UI
     this.emit('profile_updated', profile);
     // navigate to the home route
-    browserHistory.replace('/home');
+    browserHistory.replace('/relationships');
   }
 
   getProfile() {

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // constants
 const SET_RELATIONSHIPS = "SET_RELATIONSHIPS";
+const SET_RELATIONSHIP = "SET_RELATIONSHIP";
 const ADD_TO_SCORE = "ADD_TO_SCORE";
 
 // sync action creators
@@ -12,7 +13,7 @@ export const setRelationships = (relationships) => ({
 
 // async action creators
 export const fetchRelationshipsByUser = ({ id }) => dispatch => {
-  axios.get(`/api/relationship/user/${id}`)
+  return axios.get(`/api/relationship/user/${id}`)
   .then(relationships => {
     dispatch(setRelationships(relationships.data));
   })
@@ -33,10 +34,11 @@ export const incrementScore = (relationship, user) => dispatch => {
 const initialState = [];
 
 // reducer
-const reducer = (state=initialState, { type, relationships }) => {
-  switch(type) {
+const reducer = (state=initialState, action) => {
+
+  switch(action.type) {
     case SET_RELATIONSHIPS:
-      return relationships;
+      return action.relationships;
     default:
       return state;
   }
