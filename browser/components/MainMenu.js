@@ -6,6 +6,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import Divider from 'material-ui/Divider';
 
 
 
@@ -39,9 +40,11 @@ class MainMenu extends React.Component {
 								targetOrigin={{horizontal: 'left', vertical: 'top'}}
 							>
 								<MenuItem primaryText="Add a new contact" />
+								<Divider />
 								<MenuItem primaryText="Settings" />
+								<Divider />
 								<MenuItem onClick={this.logout} primaryText="Sign out" />
-
+								
 							</IconMenu>
             </div>
         );
