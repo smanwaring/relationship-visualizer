@@ -50,7 +50,7 @@ class BubbleMenu extends Component {
             label="Increment Score" 
             onTouchTap={() => incrementScore(relationship, loggedInUser)} />   
       </div>
-    )
+    );
   }
 
 }
