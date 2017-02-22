@@ -21,7 +21,8 @@ const Relationship = db.define('relationship', {
     type: Sequelize.ENUM,
     values: ['family', 'friend', 'professional', 'other'],
     defaultValue: 'family'
-  }
+  },
+  color: Sequelize.STRING
 });
 
 module.exports = Relationship;
