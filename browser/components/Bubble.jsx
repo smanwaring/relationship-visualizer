@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import * as d3 from "d3";
 import BubbleGraphic from './BubbleGraphic';
 import BubbleMenu from './BubbleMenu';
-import { animateBubbles } from '../d3/bubbleD3';
+import { expandBubble } from '../d3/bubbleD3';
 import { fetchSelectedRelationship } from '../reducers/selectedRelationship';
 
 
