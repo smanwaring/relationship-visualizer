@@ -2,6 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { clearLoggedInUser } from '../reducers/login';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+
 
 
 class MainMenu extends React.Component {
@@ -28,21 +33,16 @@ class MainMenu extends React.Component {
     render() {
         return (
             <div>
-                <ul id="slide-out" className="side-nav">
-                    <li><div className="userView">
-                    <div className="background">
-                        <img src="images/office.jpg" />
-                    </div>
-                    <a href="#!user"><img className="circle" src="images/yuna.jpg" /></a>
-                    <a href="#!name"><span className="white-text name">John Doe</span></a>
-                    <a href="#!email"><span className="white-text email">jdandturk@gmail.com</span></a>
-                    </div></li>
-                    <li><div className="divider" /></li>
-                    <li><a className="waves-effect">Add a new contact</a></li>
-                    <li><a className="waves-effect">Settings</a></li>
-                    <li><a className="waves-effect" onClick={this.logout}>Logout</a></li>
-                </ul>
-                <div data-activates="slide-out" className="button-collapse"><i className="medium material-icons">menu</i></div>
+							<IconMenu
+								iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+								anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+								targetOrigin={{horizontal: 'left', vertical: 'top'}}
+							>
+								<MenuItem primaryText="Add a new contact" />
+								<MenuItem primaryText="Settings" />
+								<MenuItem onClick={this.logout} primaryText="Sign out" />
+
+							</IconMenu>
             </div>
         );
     }
