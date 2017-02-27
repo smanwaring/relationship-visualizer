@@ -6,6 +6,7 @@ const SET_RELATIONSHIPS = 'SET_RELATIONSHIPS';
 const SET_RELATIONSHIP = 'SET_RELATIONSHIP';
 const ADD_TO_SCORE = 'ADD_TO_SCORE';
 const ADD_RELATIONSHIP = 'ADD_RELATIONSHIP';
+const SHOW_REL_EXISTS_ERROR = 'SHOW_REL_EXISTS_ERROR';
 
 // sync action creators
 export const setRelationships = (relationships) => ({
@@ -16,6 +17,11 @@ export const setRelationships = (relationships) => ({
 export const addRelationship = (relationship) => ({
   type: ADD_RELATIONSHIP,
   relationship
+});
+
+export const relationshipAlreadyExists = (bool) => ({
+  type: SHOW_REL_EXISTS_ERROR,
+  bool
 });
 
 // async action creators
@@ -40,17 +46,21 @@ export const incrementScore = (relationship, user) => dispatch => {
 
 export const postRelationship = ( relationshipInfo ) => dispatch => {
   return axios.post(`/api/relationship/`, relationshipInfo)
-  .then(relationship => {
-    dispatch(addRelationship(relationship.data));
-  });
+  .then(res => {
+    if (res.status === 204) {
+      dispatch( relationshipAlreadyExists(true) );
+    } else {
+      dispatch( addRelationship(res.data));
+    }
+  })
+  .catch(err => console.error(err));
 };
 
 // initial state
 const initialState = [];
 
 // reducer
-const reducer = (state=initialState, action) => {
-
+export const relationships = (state=initialState, action) => {
   switch (action.type) {
     case SET_RELATIONSHIPS:
       return action.relationships;
@@ -61,4 +71,11 @@ const reducer = (state=initialState, action) => {
   }
 };
 
-export default reducer;
+export const relationshipError = (state=false, action) => {
+  switch (action.type) {
+    case SHOW_REL_EXISTS_ERROR:
+      return action.bool;
+    default:
+      return state;
+  }
+};

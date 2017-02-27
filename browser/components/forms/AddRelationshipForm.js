@@ -30,7 +30,8 @@ class AddRelationshipForm extends Component {
    }
 
   render() {
-    const { addRelationship } = this.props;
+    const { addRelationship, relationshipError } = this.props;
+    console.log(relationshipError)
     return (
       <div className="row">
         <form className="col s12">
@@ -39,6 +40,7 @@ class AddRelationshipForm extends Component {
               <input id="first_name" type="text" className="validate" />
               <label htmlFor="first_name">Name or Nickname (example: Mom, Aunt May, Ryan)</label>
               <RaisedButton onClick={this.addRelationship} label="Add" />
+              { relationshipError ? <div>A contact with that name already exists</div> : ''}
             </div>
           </div>
         </form>
@@ -49,21 +51,20 @@ class AddRelationshipForm extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-function mapStateToProps( { loggedInUser } ){
+const mapStateToProps = ( { loggedInUser, relationshipError } ) => {
 	return {
-    loggedInUser
+    loggedInUser,
+    relationshipError
 	};
-}
+};
 
 const  mapDispatchToProps = (dispatch) => {
   return {
     addRelationship: (relationShipInfo) => {
         dispatch( postRelationship(relationShipInfo) );
     }
-  }
-}
-
-
+  };
+};
 
 export default connect(
 	mapStateToProps,
