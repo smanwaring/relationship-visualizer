@@ -23,6 +23,7 @@ class AddRelationshipForm extends Component {
        userId: this.props.loggedInUser.id,
        name: this.state.name,
        type: this.state.type,
+       color: 'steelblue',
        score: 10
      };
      this.props.addRelationship(relationshipInfo);
