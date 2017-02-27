@@ -2,47 +2,97 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { clearLoggedInUser } from '../reducers/login';
-
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import Divider from 'material-ui/Divider';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import AddRelationshipForm from './forms/AddRelationshipForm';
+import SettingsForm from './forms/SettingsForm';
 
 class MainMenu extends React.Component {
-    constructor(props){
-        super(props);
-        this.logout = this.logout.bind(this);
-    }
+	constructor(props){
+		super(props);
+		this.state = {
+			showAddRelationship: false,
+			showSettings: false
+		};
+		this.logout = this.logout.bind(this);
+		this.handleClose = this.handleClose.bind(this);
+		this.handleOpen = this.handleOpen.bind(this);
+	}
 
-    // log a user out of auth0 and clear loggedInUserState
-    logout() {
-        this.props.auth.logout();
-        this.props.clearUserState();
-         $('.button-collapse').sideNav('destroy');
-        browserHistory.replace('/login');
-    }
+	handleOpen(str) {
+    this.setState({ [str]: true });
+  }
 
-    componentDidMount(){
-        // Initialize collapse button
-        $(".button-collapse").sideNav();
-        // Initialize collapsible (uncomment the line below if you use the dropdown variation)
-        //$('.collapsible').collapsible();
-    }
+	handleClose(str) {
+    this.setState({ [str]: false });
+	}
+
+  // log a user out of auth0 and clear loggedInUserState
+	logout() {
+		this.props.auth.logout();
+		this.props.clearUserState();
+		$('.button-collapse').sideNav('destroy');
+		browserHistory.replace('/login');
+	}
+
 
     render() {
+			const addRelationshipActions = [
+				<FlatButton
+					label="Cancel"
+					primary={true}
+					keyboardFocused={true}
+					onTouchTap={ () => this.handleClose('showAddRelationship') }
+				/>
+			]
+			const settingsActions = [
+				<FlatButton
+					label="Cancel"
+					primary={true}
+					keyboardFocused={true}
+					onTouchTap={ () => this.handleClose('showSettings') }
+				/>
+			]
         return (
             <div>
-                <ul id="slide-out" className="side-nav">
-                    <li><div className="userView">
-                    <div className="background">
-                        <img src="images/office.jpg" />
-                    </div>
-                    <a href="#!user"><img className="circle" src="images/yuna.jpg" /></a>
-                    <a href="#!name"><span className="white-text name">John Doe</span></a>
-                    <a href="#!email"><span className="white-text email">jdandturk@gmail.com</span></a>
-                    </div></li>
-                    <li><div className="divider" /></li>
-                    <li><a className="waves-effect">Add a new contact</a></li>
-                    <li><a className="waves-effect">Settings</a></li>
-                    <li><a className="waves-effect" onClick={this.logout}>Logout</a></li>
-                </ul>
-                <div data-activates="slide-out" className="button-collapse"><i className="medium material-icons">menu</i></div>
+							<IconMenu
+									iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+									anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+									targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+							>
+									<MenuItem onClick={ () => this.handleOpen('showAddRelationship') } primaryText="Add a new Relationship" />
+									<Divider />
+									<MenuItem onClick={ () => this.handleOpen('showSettings') } primaryText="Settings" />
+									<Divider />
+									<MenuItem onClick={ this.logout } primaryText="Sign out" />
+							</IconMenu>
+
+							{/* add new relationship modal */}
+							<Dialog
+								title="Add a new relationship"
+								actions={ addRelationshipActions }
+								modal={ false }
+								open={ this.state.showAddRelationship }
+								onRequestClose={ () => this.handleClose('showAddRelationship') }
+							>
+								<AddRelationshipForm />
+							</Dialog>
+
+							{/* settings dialog modal */}
+							<Dialog
+								title="Settings"
+								actions={ settingsActions }
+								modal={ false }
+								open={ this.state.showSettings }
+								onRequestClose={ () => this.handleClose('showSettings') }
+							>
+								<SettingsForm />
+							</Dialog>
             </div>
         );
     }
@@ -50,9 +100,8 @@ class MainMenu extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-function mapStateToProps({ loggedInUser }){
+function mapStateToProps(state){
 	return {
-        loggedInUser
 	};
 }
 

@@ -96,7 +96,7 @@ class BubbleMenu extends Component {
             </div>
           </Dialog>
       </div>
-    )
+    );
   }
 
 }
