@@ -9,15 +9,15 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Divider from 'material-ui/Divider';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import AddRelationshipForm from './forms/AddRelationshipForm';
+import SettingsForm from './forms/SettingsForm';
 
 class MainMenu extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			addContact: false,
-			settings: false
+			showAddRelationship: false,
+			showSettings: false
 		};
 		this.logout = this.logout.bind(this);
 		this.handleClose = this.handleClose.bind(this);
@@ -40,13 +40,14 @@ class MainMenu extends React.Component {
 		browserHistory.replace('/login');
 	}
 
+
     render() {
-			const addContactActions = [
+			const addRelationshipActions = [
 				<FlatButton
 					label="Cancel"
 					primary={true}
 					keyboardFocused={true}
-					onTouchTap={ () => this.handleClose("addContact") }
+					onTouchTap={ () => this.handleClose('showAddRelationship') }
 				/>
 			]
 			const settingsActions = [
@@ -54,7 +55,7 @@ class MainMenu extends React.Component {
 					label="Cancel"
 					primary={true}
 					keyboardFocused={true}
-					onTouchTap={ () => this.handleClose("settings") }
+					onTouchTap={ () => this.handleClose('showSettings') }
 				/>
 			]
         return (
@@ -64,20 +65,20 @@ class MainMenu extends React.Component {
 									anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
 									targetOrigin={{ horizontal: 'left', vertical: 'top' }}
 							>
-									<MenuItem onClick={ () => this.handleOpen('addContact') } primaryText="Add a new contact" />
+									<MenuItem onClick={ () => this.handleOpen('showAddRelationship') } primaryText="Add a new Relationship" />
 									<Divider />
-									<MenuItem onClick={ () => this.handleOpen('settings') } primaryText="Settings" />
+									<MenuItem onClick={ () => this.handleOpen('showSettings') } primaryText="Settings" />
 									<Divider />
 									<MenuItem onClick={ this.logout } primaryText="Sign out" />
 							</IconMenu>
 
-							{/* add new contact modal */}
+							{/* add new relationship modal */}
 							<Dialog
-								title="Add a new contact"
-								actions={ addContactActions }
+								title="Add a new relationship"
+								actions={ addRelationshipActions }
 								modal={ false }
-								open={ this.state.addContact }
-								onRequestClose={ () => this.handleClose('addContact') }
+								open={ this.state.showAddRelationship }
+								onRequestClose={ () => this.handleClose('showAddRelationship') }
 							>
 								<AddRelationshipForm />
 							</Dialog>
@@ -87,9 +88,10 @@ class MainMenu extends React.Component {
 								title="Settings"
 								actions={ settingsActions }
 								modal={ false }
-								open={ this.state.settings }
-								onRequestClose={ () => this.handleClose('settings') }
+								open={ this.state.showSettings }
+								onRequestClose={ () => this.handleClose('showSettings') }
 							>
+								<SettingsForm />
 							</Dialog>
             </div>
         );
@@ -98,9 +100,8 @@ class MainMenu extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-function mapStateToProps({ loggedInUser }){
+function mapStateToProps(state){
 	return {
-        loggedInUser
 	};
 }
 

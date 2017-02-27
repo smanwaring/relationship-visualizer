@@ -35,7 +35,7 @@ relationshipRouter.get('/user/:userID', (req, res, next) => {
 relationshipRouter.post('/', (req, res, next) => {
   db.model('relationship').create(req.body)
   .then(relationship => {
-    res.status(201).json(relationship)
+    res.status(201).json(relationship);
   })
   .catch(next);
 })
