@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton'; 
-import { postRelationship } from '../../reducers/relationships';
+import { postRelationship, toggleRelExistsError } from '../../reducers/relationships';
 
 class AddRelationshipForm extends Component {
   constructor(props){
@@ -12,6 +12,15 @@ class AddRelationshipForm extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.addRelationship = this.addRelationship.bind(this);
+  }
+
+  componentDidUpdate() {
+    const self = this;
+    if (this.props.toggleError) {
+      setTimeout(function () {
+        self.props.toggleError(false);
+      }, 2000);
+    }
   }
 
    handleChange(event) {
@@ -31,7 +40,6 @@ class AddRelationshipForm extends Component {
 
   render() {
     const { addRelationship, relationshipError } = this.props;
-    console.log(relationshipError)
     return (
       <div className="row">
         <form className="col s12">
@@ -39,8 +47,8 @@ class AddRelationshipForm extends Component {
             <div className="input-field col s10" onChange={this.handleChange}>
               <input id="first_name" type="text" className="validate" />
               <label htmlFor="first_name">Name or Nickname (example: Mom, Aunt May, Ryan)</label>
-              <RaisedButton onClick={this.addRelationship} label="Add" />
               { relationshipError ? <div>A contact with that name already exists</div> : ''}
+              <RaisedButton className="btn-margin" onClick={this.addRelationship} label="Add" />
             </div>
           </div>
         </form>
@@ -50,7 +58,6 @@ class AddRelationshipForm extends Component {
 }
 
 /* -----------------    CONTAINER     ------------------ */
-
 const mapStateToProps = ( { loggedInUser, relationshipError } ) => {
 	return {
     loggedInUser,
@@ -61,7 +68,10 @@ const mapStateToProps = ( { loggedInUser, relationshipError } ) => {
 const  mapDispatchToProps = (dispatch) => {
   return {
     addRelationship: (relationShipInfo) => {
-        dispatch( postRelationship(relationShipInfo) );
+      dispatch( postRelationship(relationShipInfo) );
+    },
+    toggleError: (bool) => {
+      dispatch(  toggleRelExistsError(bool) );
     }
   };
 };

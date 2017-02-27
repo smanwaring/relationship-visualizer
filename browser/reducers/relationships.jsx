@@ -19,7 +19,7 @@ export const addRelationship = (relationship) => ({
   relationship
 });
 
-export const relationshipAlreadyExists = (bool) => ({
+export const toggleRelExistsError = (bool) => ({
   type: SHOW_REL_EXISTS_ERROR,
   bool
 });
@@ -48,7 +48,7 @@ export const postRelationship = ( relationshipInfo ) => dispatch => {
   return axios.post(`/api/relationship/`, relationshipInfo)
   .then(res => {
     if (res.status === 204) {
-      dispatch( relationshipAlreadyExists(true) );
+      dispatch( toggleRelExistsError(true) );
     } else {
       dispatch( addRelationship(res.data));
     }
