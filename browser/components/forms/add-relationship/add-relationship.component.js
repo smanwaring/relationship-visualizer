@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton'; 
-import { postRelationship, toggleRelExistsError } from '../../reducers/relationships';
-import ColorPicker from './ChangeColor';
+import { postRelationship, toggleRelExistsError } from './add-relationship.reducer';
+import { CirclePicker } from 'react-color';
+import BubbleGraphicStatic from '../../BubbleGraphicStatic';
 
 class AddRelationshipForm extends Component {
   constructor(props){
@@ -41,16 +42,19 @@ class AddRelationshipForm extends Component {
 
   render() {
     const { addRelationship, relationshipError } = this.props;
+    const localRelationship = {score: 5};
     return (
       <div className="row">
         <form className="col s12">
           <div className="row">
             <div className="input-field col s10" onChange={this.handleChange}>
               <input id="first_name" type="text" className="validate" />
-              <ColorPicker />
+              <div>Pick a color </div>
+              <CirclePicker />
               <label htmlFor="first_name">Name or Nickname (example: Mom, Aunt May, Ryan)</label>
               { relationshipError ? <div>A contact with that name already exists</div> : ''}
               <RaisedButton className="btn-margin" onClick={this.addRelationship} label="Add" />
+              <BubbleGraphicStatic relationship={localRelationship}/>
             </div>
           </div>
         </form>
@@ -60,7 +64,7 @@ class AddRelationshipForm extends Component {
 }
 
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ( { loggedInUser, relationshipError } ) => {
+const mapStateToProps = ( { loggedInUser, relationshipError} ) => {
 	return {
     loggedInUser,
     relationshipError

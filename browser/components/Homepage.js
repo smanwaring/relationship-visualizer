@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Bubble from './Bubble';
-import AddRelationshipForm from './forms/AddRelationshipForm';
+import AddRelationshipForm from './forms/add-relationship/add-relationship.component';
 import RaisedButton from 'material-ui/RaisedButton';
 import MainMenu from './MainMenu';
 

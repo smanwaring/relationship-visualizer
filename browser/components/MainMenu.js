@@ -9,7 +9,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Divider from 'material-ui/Divider';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import AddRelationshipForm from './forms/AddRelationshipForm';
+import AddRelationshipForm from './forms/add-relationship/add-relationship.component';
 import SettingsForm from './forms/SettingsForm';
 
 class MainMenu extends React.Component {

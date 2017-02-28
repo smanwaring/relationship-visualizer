@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
 
-class AddRelationshipForm extends Component {
+class SettingsForm extends Component {
 
 
   render() {
@@ -29,4 +29,4 @@ const  mapDispatchToProps = {  };
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(AddRelationshipForm);
+)(SettingsForm);
