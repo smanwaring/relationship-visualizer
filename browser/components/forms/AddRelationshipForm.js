@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton'; 
 import { postRelationship, toggleRelExistsError } from '../../reducers/relationships';
+import ColorPicker from './ChangeColor';
 
 class AddRelationshipForm extends Component {
   constructor(props){
@@ -19,7 +20,7 @@ class AddRelationshipForm extends Component {
     if (this.props.toggleError) {
       setTimeout(function () {
         self.props.toggleError(false);
-      }, 2000);
+      }, 5000);
     }
   }
 
@@ -46,6 +47,7 @@ class AddRelationshipForm extends Component {
           <div className="row">
             <div className="input-field col s10" onChange={this.handleChange}>
               <input id="first_name" type="text" className="validate" />
+              <ColorPicker />
               <label htmlFor="first_name">Name or Nickname (example: Mom, Aunt May, Ryan)</label>
               { relationshipError ? <div>A contact with that name already exists</div> : ''}
               <RaisedButton className="btn-margin" onClick={this.addRelationship} label="Add" />
