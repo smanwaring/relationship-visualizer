@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RelationshipReminder from './relationships-reminder.component';
+import RelationshipBubble from '../relationship-bubble/relationship-bubble.component';
 
 /* -----------------    COMPONENT     ------------------ */
 class Relationships extends Component {
-
   render() {
     const { relationships } = this.props;
     const showAddReminder = relationships.length < 1;
@@ -15,19 +15,14 @@ class Relationships extends Component {
           :
         <ul className="flex-container bubble-padding">
           {relationships && relationships.map( (relationship,i) => {
-            const relationShipStyle = {
+            const relationshipStyle = {
               background: relationship.color,
               width: 220,
               height: 220
             };
             return (
               <li key={relationship.id}>
-                <div className="bubble-container">
-                  <div className="bubble-container-center">
-                    <div>{relationship.name}</div>
-                    <div className="flex-bubble" style={relationShipStyle}></div>
-                  </div>
-                </div>
+                <RelationshipBubble name={relationship.name} relationshipStyle={relationshipStyle} />
               </li>
             );
             })}
@@ -53,3 +48,10 @@ export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(Relationships);
+
+                /*<div className="bubble-container">
+                  <div className="bubble-container-center">
+                    <div>{relationship.name}</div>
+                    <div className="flex-bubble" style={relationshipStyle}></div>
+                  </div>
+                </div>*/
