@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton'; 
-import { CirclePicker } from 'react-color';
-import { browserHistory } from 'react-router';
 import RelationshipReminder from './relationships-reminder.component';
 
-class Test extends Component {
-
+class Relationships extends Component {
   render() {
     const { relationships } = this.props;
     const showAddReminder = relationships.length < 1;
@@ -55,4 +51,4 @@ const  mapDispatchToProps = (dispatch) => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Test);
+)(Relationships);
