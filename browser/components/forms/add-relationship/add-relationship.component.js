@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton'; 
 import { postRelationship, toggleRelExistsError } from './add-relationship.reducer';
 import { CirclePicker } from 'react-color';
-import { browserHistory } from 'react-router';
+import RelationshipBubble from '../../relationship-bubble/relationship-bubble.component';
 
 class AddRelationshipForm extends Component {
   constructor(props) {
@@ -50,19 +50,30 @@ class AddRelationshipForm extends Component {
 
   render() {
     const { addRelationshipError } = this.props;
+    const relationshipStyle = {
+      background: this.state.color,
+      width: 175,
+      height: 175
+    }
     return (
-      <div className="row">
-        <form className="col s12">
-          <div className="row">
-            <div className="input-field col s10" onChange={this.handleNameChange}>
-              <input id="first_name" type="text" className="validate" />
-              <div>Pick a color </div>
-              <CirclePicker onChange={this.handleColorChange } color={this.state.color} />
-              <label htmlFor="first_name">Name or Nickname (example: Mom, Aunt Linda, Ryan)</label>
+      <div>
+        <form>
+          <div className="wrapper">
+            <article className="main">
+              <RelationshipBubble name={this.state.name} relationshipStyle={relationshipStyle} /> 
+            </article>
+            <aside className="aside aside-1">
+              <div className="input-field" onChange={this.handleNameChange}>
+                <input placeholder="Name or Nickname" id="first_name" type="text" className="validate"/>
+              </div>
               { addRelationshipError ? <div>A contact with that name already exists</div> : ''}
-              <RaisedButton className="btn-margin" onClick={this.addRelationship} label="Add" />
-            </div>
+              <div className="left spacer-sm">CHOOSE A HUE </div>
+              <div>
+                <CirclePicker onChange={this.handleColorChange } color={this.state.color} />
+              </div>
+            </aside>
           </div>
+          <RaisedButton className="btn-margin" onClick={this.addRelationship} label="Add" />
         </form>
       </div>
     );
@@ -83,7 +94,7 @@ const  mapDispatchToProps = (dispatch) => {
       dispatch( postRelationship(relationShipInfo) );
     },
     toggleError: (bool) => {
-      dispatch(  toggleRelExistsError(bool) );
+      dispatch( toggleRelExistsError(bool) );
     }
   };
 };
@@ -92,3 +103,16 @@ export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(AddRelationshipForm);
+
+
+          /*<div className="row">
+            <div className="input-field col s10" onChange={this.handleNameChange}>
+              <input id="first_name" type="text" className="validate" />
+              <div>Pick a color </div>
+              <CirclePicker onChange={this.handleColorChange } color={this.state.color} />
+              <label htmlFor="first_name">Name or Nickname (example: Mom, Aunt Linda, Ryan)</label>
+              { addRelationshipError ? <div>A contact with that name already exists</div> : ''}
+              <RaisedButton className="btn-margin" onClick={this.addRelationship} label="Add" />
+              <RelationshipBubble name={this.state.name} relationshipStyle={relationshipStyle} />
+            </div>
+          </div>*/
