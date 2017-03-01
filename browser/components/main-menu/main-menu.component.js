@@ -43,12 +43,12 @@ class MainMenu extends React.Component {
 
     render() {
 			const addRelationshipActions = [
-				/*<FlatButton
+				<FlatButton
 					label="Cancel"
 					primary={true}
 					keyboardFocused={true}
 					onTouchTap={ () => this.handleClose('showAddRelationship') }
-				/>*/
+				/>
 			]
 			const settingsActions = [
 				<FlatButton

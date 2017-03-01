@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-/* ------- ACTION TYPES/CONTSTANTS --------*/
+/* ------- CONSTANTS --------*/
 const RELATIONSHIP_ADD_ERROR = 'RELATIONSHIP_ADD_ERROR';
 
 /* ------- ACTION CREATORS --------*/
@@ -14,7 +14,7 @@ export const postRelationship = ( relationshipInfo ) => dispatch => {
   return axios.post(`/api/relationship/`, relationshipInfo)
   .then(res => {
     if (res.status === 204) {
-      dispatch( toggleRelExistsError(true));
+      dispatch( toggleRelExistsError(true) );
     }
   })
   .catch(err => console.error(err));

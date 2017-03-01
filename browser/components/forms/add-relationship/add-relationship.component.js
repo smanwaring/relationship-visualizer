@@ -39,7 +39,6 @@ class AddRelationshipForm extends Component {
        color: this.state.color,
        score: 10
      };
-     console.log(relationshipInfo)
      this.props.addRelationship(relationshipInfo);
    }
 

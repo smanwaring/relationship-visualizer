@@ -36,9 +36,7 @@ relationshipRouter.get('/user/:userID', (req, res, next) => {
 relationshipRouter.post('/', (req, res, next) => {
   db.model('relationship').findOrCreate({
     where: {
-      name: {
-        $iLike: req.body.name
-      },
+      name: req.body.name,
       userId: req.body.userId
     },
     defaults: {

@@ -5,12 +5,14 @@ import { animateBubbles, expandBubble } from '../d3/bubbleD3';
 const SET_RELATIONSHIPS = 'SET_RELATIONSHIPS';
 const SET_RELATIONSHIP = 'SET_RELATIONSHIP';
 const ADD_TO_SCORE = 'ADD_TO_SCORE';
+const ADD_RELATIONSHIP = 'ADD_RELATIONSHIP';
 
 // sync action creators
 export const setRelationships = (relationships) => ({
   type: SET_RELATIONSHIPS,
   relationships
 });
+
 
 // async action creators
 export const fetchRelationshipsByUser = ({ id }) => dispatch => {
