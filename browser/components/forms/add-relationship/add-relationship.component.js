@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton'; 
 import { postRelationship, toggleRelExistsError } from './add-relationship.reducer';
 import { CirclePicker } from 'react-color';
-import BubbleGraphicStatic from '../../BubbleGraphicStatic';
 
 class AddRelationshipForm extends Component {
   constructor(props) {
