@@ -81,7 +81,7 @@ class AddRelationshipForm extends Component {
 }
 
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ( { loggedInUser, addRelationshipError} ) => {
+const mapStateToProps = ( { loggedInUser, addRelationshipError } ) => {
 	return {
     loggedInUser,
     addRelationshipError

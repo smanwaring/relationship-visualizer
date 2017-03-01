@@ -11,26 +11,23 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import AddRelationshipForm from '../forms/add-relationship/add-relationship.component';
 import SettingsForm from '../forms/SettingsForm';
+import { toggleStateModal } from './main-menu.reducer';
 
 /* -----------------    COMPONENT     ------------------ */
 class MainMenu extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = {
-			showAddRelationship: false,
-			showSettings: false
-		};
 		this.logout = this.logout.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 		this.handleOpen = this.handleOpen.bind(this);
 	}
 
 	handleOpen(str) {
-    this.setState({ [str]: true });
+		this.props.toggleModal(str, true);
   }
 
 	handleClose(str) {
-    this.setState({ [str]: false });
+		this.props.toggleModal(str, false);
 	}
 
   // log a user out of auth0 and clear loggedInUserState
@@ -43,6 +40,8 @@ class MainMenu extends React.Component {
 
 
     render() {
+			const { showAddRelationshipModal, showSettingsModal } = this.props.mainMenu;
+
 			const addRelationshipActions = [
 				/*<FlatButton
 					label="Cancel"
@@ -56,7 +55,7 @@ class MainMenu extends React.Component {
 					label="Cancel"
 					primary={true}
 					keyboardFocused={true}
-					onTouchTap={ () => this.handleClose('showSettings') }
+					onTouchTap={ () => this.handleClose('showSettingsModal') }
 				/>
 			]
         return (
@@ -66,9 +65,9 @@ class MainMenu extends React.Component {
 									anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
 									targetOrigin={{ horizontal: 'left', vertical: 'top' }}
 							>
-									<MenuItem onClick={ () => this.handleOpen('showAddRelationship') } primaryText="Add a new Relationship" />
+									<MenuItem onClick={ () => this.handleOpen('showAddRelationshipModal') } primaryText="Add a new Relationship" />
 									<Divider />
-									<MenuItem onClick={ () => this.handleOpen('showSettings') } primaryText="Settings" />
+									<MenuItem onClick={ () => this.handleOpen('showSettingsModal') } primaryText="Settings" />
 									<Divider />
 									<MenuItem onClick={ this.logout } primaryText="Sign out" />
 							</IconMenu>
@@ -78,8 +77,8 @@ class MainMenu extends React.Component {
 								title="Add a new relationship"
 								actions={ addRelationshipActions }
 								modal={ false }
-								open={ this.state.showAddRelationship }
-								onRequestClose={ () => this.handleClose('showAddRelationship') }
+								open={ showAddRelationshipModal }
+								onRequestClose={ () => this.handleClose('showAddRelationshipModal') }
 							>
 								<AddRelationshipForm />
 							</Dialog>
@@ -89,8 +88,8 @@ class MainMenu extends React.Component {
 								title="Settings"
 								actions={ settingsActions }
 								modal={ false }
-								open={ this.state.showSettings }
-								onRequestClose={ () => this.handleClose('showSettings') }
+								open={ showSettingsModal }
+								onRequestClose={ () => this.handleClose('showSettingsModal') }
 							>
 								<SettingsForm />
 							</Dialog>
@@ -101,16 +100,20 @@ class MainMenu extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-function mapStateToProps(state){
+function mapStateToProps( { mainMenu  } ){
 	return {
+		mainMenu
 	};
 }
 
 function mapDispatchToProps(dispatch){
 	return {
-        clearUserState: function(){
-            dispatch(clearLoggedInUser());
-        }
+        clearUserState: () => {
+					dispatch( clearLoggedInUser() );
+        },
+				toggleModal: (str, bool) => {
+					dispatch( toggleStateModal(str, bool) );
+				}
     };
 }
 
