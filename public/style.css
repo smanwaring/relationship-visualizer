@@ -82,3 +82,48 @@ Add RelationshipForm
   margin-top: 20px;
 }
 
+
+/*
+*
+*
+*
+Test Bubble
+*
+*
+*
+*/
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.flex-bubble {
+  border-radius: 50%;
+  margin: auto;
+  padding: 5px;
+  text-align: center;
+  font-size: 3em;
+  font-weight: bold;
+  color: white;
+}
+
+.bubble-container {
+  height: 250px;
+  width: 250px;
+  text-align: center;
+}
+
+.bubble-container-center {
+  padding-top: 10%;
+}

@@ -24,6 +24,7 @@ import Login from './components/login/login.component';
 import ActivityInfo from './components/ActivityInfo';
 import AllBubbles from './components/AllBubbles';
 import OneBubbleContainer from './components/OneBubbleContainer';
+import Relationships from './components/relationships/relationships.component';
 
 /*--------- ACTION CREATORS --------- */
 import { fetchRelationshipsByUser, fetchOneRelationship } from './reducers/relationships';
@@ -87,7 +88,7 @@ ReactDOM.render(
 	    <Router history={browserHistory}>
 			<Route path="/" component={Root} auth={auth}>
 				<Route path="/home" component={Homepage} onEnter={requireAuth}>
-					<Route path="/relationships" component={AllBubbles}  onEnter={onAllBubblesEnter} />
+					<Route path="/relationships" component={Relationships}  onEnter={onAllBubblesEnter} />
 					<Route path="/relationship/:id" component={OneBubbleContainer} onEnter={onOneRelationshipEnter} />
         	<Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter} />
 				</Route>
