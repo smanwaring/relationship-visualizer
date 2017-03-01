@@ -22,7 +22,6 @@ import Root from './components/Root';
 import Homepage from './components/Homepage';
 import Login from './components/login/login.component';
 import ActivityInfo from './components/ActivityInfo';
-import AllBubbles from './components/AllBubbles';
 import OneBubbleContainer from './components/OneBubbleContainer';
 import Relationships from './components/relationships/relationships.component';
 
