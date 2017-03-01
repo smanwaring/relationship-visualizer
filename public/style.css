@@ -136,6 +136,10 @@ Test Bubble
   padding-top: 10%;
 }
 
+.bubble-padding {
+  padding-top: 50px;
+}
+
 
 /*
 Add relationships Reminder

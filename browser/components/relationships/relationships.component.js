@@ -15,7 +15,7 @@ class Test extends Component {
         {showAddReminder ?
           <RelationshipReminder />
           :
-        <ul className="flex-container">
+        <ul className="flex-container bubble-padding">
           {relationships && relationships.map( (relationship,i) => {
             const relationShipStyle = {
               background: relationship.color,
