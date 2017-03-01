@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton'; 
 import { postRelationship, toggleRelExistsError } from './add-relationship.reducer';
 import { CirclePicker } from 'react-color';
-import BubbleGraphicStatic from '../../BubbleGraphicStatic';
+import { browserHistory } from 'react-router';
 
 class AddRelationshipForm extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class AddRelationshipForm extends Component {
     this.state = {
       name: '',
       type: 'family',
-      color: 'steelblue'
+      color: '#2196f3'
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.addRelationship = this.addRelationship.bind(this);
@@ -57,7 +57,7 @@ class AddRelationshipForm extends Component {
             <div className="input-field col s10" onChange={this.handleNameChange}>
               <input id="first_name" type="text" className="validate" />
               <div>Pick a color </div>
-              <CirclePicker onChange={this.handleColorChange} />
+              <CirclePicker onChange={this.handleColorChange } color={this.state.color} />
               <label htmlFor="first_name">Name or Nickname (example: Mom, Aunt Linda, Ryan)</label>
               { addRelationshipError ? <div>A contact with that name already exists</div> : ''}
               <RaisedButton className="btn-margin" onClick={this.addRelationship} label="Add" />

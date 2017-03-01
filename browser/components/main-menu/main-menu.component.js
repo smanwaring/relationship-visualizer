@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { clearLoggedInUser } from '../reducers/login';
+import { clearLoggedInUser } from '../login/login.reducer';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
@@ -9,8 +9,8 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Divider from 'material-ui/Divider';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import AddRelationshipForm from './forms/add-relationship/add-relationship.component';
-import SettingsForm from './forms/SettingsForm';
+import AddRelationshipForm from '../forms/add-relationship/add-relationship.component';
+import SettingsForm from '../forms/SettingsForm';
 
 class MainMenu extends React.Component {
 	constructor(props){
@@ -43,12 +43,12 @@ class MainMenu extends React.Component {
 
     render() {
 			const addRelationshipActions = [
-				<FlatButton
+				/*<FlatButton
 					label="Cancel"
 					primary={true}
 					keyboardFocused={true}
 					onTouchTap={ () => this.handleClose('showAddRelationship') }
-				/>
+				/>*/
 			]
 			const settingsActions = [
 				<FlatButton
