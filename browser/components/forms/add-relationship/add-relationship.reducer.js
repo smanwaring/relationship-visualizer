@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { concatRelationship } from '../../../reducers/relationships';
 
 /* ------- ACTION TYPES/CONTSTANTS --------*/
 const RELATIONSHIP_ADD_ERROR = 'RELATIONSHIP_ADD_ERROR';
+
 
 /* ------- ACTION CREATORS --------*/
 export const toggleRelExistsError = (bool) => ({
@@ -14,7 +16,9 @@ export const postRelationship = ( relationshipInfo ) => dispatch => {
   return axios.post(`/api/relationship/`, relationshipInfo)
   .then(res => {
     if (res.status === 204) {
-      dispatch( toggleRelExistsError(true));
+      dispatch( toggleRelExistsError(true) );
+    } else {
+      dispatch( concatRelationship(res.data) );
     }
   })
   .catch(err => console.error(err));

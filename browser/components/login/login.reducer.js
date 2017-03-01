@@ -20,7 +20,8 @@ export const findOrCreateUser = userDetails => dispatch => {
   .then(res => res.data)
   .then(foundUser => {
     dispatch(setLoggedInUser(foundUser));
-  });
+  })
+  .catch(err => console.error(err));
 };
 
 /* ------- LOGIN REDUCER --------*/

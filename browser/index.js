@@ -61,7 +61,7 @@ const onActivityInfoEnter = ({ params }) => {
 	store.dispatch(fetchSelectedRelationship({ relationshipId: params.id }));
 };
 
-const onAllBubblesEnter = (nextState) => {
+const onRelationshipsEnter = (nextState) => {
 	if(!store.getState().loggedInUser.id) return;
 	store.dispatch(fetchRelationshipsByUser({ id: store.getState().loggedInUser.id }))
 	.then(response => {
@@ -87,7 +87,7 @@ ReactDOM.render(
 	    <Router history={browserHistory}>
 			<Route path="/" component={Root} auth={auth}>
 				<Route path="/home" component={Homepage} onEnter={requireAuth}>
-					<Route path="/relationships" component={Relationships}  onEnter={onAllBubblesEnter} />
+					<Route path="/relationships" component={Relationships}  onEnter={onRelationshipsEnter} />
 					<Route path="/relationship/:id" component={OneBubbleContainer} onEnter={onOneRelationshipEnter} />
         	<Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter} />
 				</Route>

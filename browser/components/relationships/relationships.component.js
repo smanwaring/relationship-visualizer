@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RelationshipReminder from './relationships-reminder.component';
 
+/* -----------------    COMPONENT     ------------------ */
 class Relationships extends Component {
+
   render() {
     const { relationships } = this.props;
     const showAddReminder = relationships.length < 1;
@@ -35,7 +37,6 @@ class Relationships extends Component {
     );
   }
 }
-
 /* -----------------    CONTAINER     ------------------ */
 const mapStateToProps = ( { relationships } ) => {
 	return {

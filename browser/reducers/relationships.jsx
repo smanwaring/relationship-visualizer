@@ -5,12 +5,19 @@ import { animateBubbles, expandBubble } from '../d3/bubbleD3';
 const SET_RELATIONSHIPS = 'SET_RELATIONSHIPS';
 const SET_RELATIONSHIP = 'SET_RELATIONSHIP';
 const ADD_TO_SCORE = 'ADD_TO_SCORE';
+const ADD_RELATIONSHIP = 'ADD_RELATIONSHIP';
 
 // sync action creators
 export const setRelationships = (relationships) => ({
   type: SET_RELATIONSHIPS,
   relationships
 });
+
+export const concatRelationship = (createdRelationship) => ({
+  type: ADD_RELATIONSHIP,
+  createdRelationship
+});
+
 
 // async action creators
 export const fetchRelationshipsByUser = ({ id }) => dispatch => {
@@ -36,10 +43,12 @@ export const incrementScore = (relationship, user) => dispatch => {
 const initialState = [];
 
 // reducer
-export const relationships = (state=initialState, action) => {
+export const relationships = (state = initialState, action) => {
   switch (action.type) {
     case SET_RELATIONSHIPS:
       return action.relationships;
+    case ADD_RELATIONSHIP:
+      return [...state, action.createdRelationship];
     default:
       return state;
   }
