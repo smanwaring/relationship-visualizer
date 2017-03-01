@@ -1,31 +1,29 @@
 import axios from 'axios';
 
 /* ------- ACTION TYPES/CONTSTANTS --------*/
-const ADD_RELATIONSHIP = 'ADD_RELATIONSHIP';
-const SHOW_REL_EXISTS_ERROR = 'SHOW_REL_EXISTS_ERROR';
+const RELATIONSHIP_ADD_ERROR = 'RELATIONSHIP_ADD_ERROR';
 
 /* ------- ACTION CREATORS --------*/
-export const addRelationship = (relationship) => ({
-  type: ADD_RELATIONSHIP,
-  relationship
-});
-
 export const toggleRelExistsError = (bool) => ({
-  type: SHOW_REL_EXISTS_ERROR,
+  type: RELATIONSHIP_ADD_ERROR,
   bool
 });
 
 /* ------- DISPATCHERS --------*/
 export const postRelationship = ( relationshipInfo ) => dispatch => {
   return axios.post(`/api/relationship/`, relationshipInfo)
-  .then(res => res.status === 204 ? dispatch( toggleRelExistsError(true)) : dispatch( addRelationship(res.data)) )
+  .then(res => {
+    if (res.status === 204) {
+      dispatch( toggleRelExistsError(true));
+    }
+  })
   .catch(err => console.error(err));
 };
 
 /* ------- REDUCER --------*/
-const reducer = (state=false, action) => {
+const reducer = ( state = false, action ) => {
   switch (action.type) {
-    case SHOW_REL_EXISTS_ERROR:
+    case RELATIONSHIP_ADD_ERROR:
       return action.bool;
     default:
       return state;

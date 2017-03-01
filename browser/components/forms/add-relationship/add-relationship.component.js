@@ -6,14 +6,16 @@ import { CirclePicker } from 'react-color';
 import BubbleGraphicStatic from '../../BubbleGraphicStatic';
 
 class AddRelationshipForm extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       name: '',
-      type: "family"
+      type: 'family',
+      color: 'steelblue'
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.addRelationship = this.addRelationship.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
   }
 
   componentDidUpdate() {
@@ -25,36 +27,40 @@ class AddRelationshipForm extends Component {
     }
   }
 
-   handleChange(event) {
+   handleNameChange(event) {
      this.setState( {name: event.target.value } );
    }
 
-   addRelationship(){
+   addRelationship() {
      let relationshipInfo = {
        userId: this.props.loggedInUser.id,
        name: this.state.name,
        type: this.state.type,
-       color: 'steelblue',
+       color: this.state.color,
        score: 10
      };
+     console.log(relationshipInfo)
      this.props.addRelationship(relationshipInfo);
    }
 
+   handleColorChange(color, event) {
+    event.preventDefault();
+    this.setState( { color: color.hex } );
+   }
+
   render() {
-    const { addRelationship, relationshipError } = this.props;
-    const localRelationship = {score: 5};
+    const { addRelationshipError } = this.props;
     return (
       <div className="row">
         <form className="col s12">
           <div className="row">
-            <div className="input-field col s10" onChange={this.handleChange}>
+            <div className="input-field col s10" onChange={this.handleNameChange}>
               <input id="first_name" type="text" className="validate" />
               <div>Pick a color </div>
-              <CirclePicker />
-              <label htmlFor="first_name">Name or Nickname (example: Mom, Aunt May, Ryan)</label>
-              { relationshipError ? <div>A contact with that name already exists</div> : ''}
+              <CirclePicker onChange={this.handleColorChange} />
+              <label htmlFor="first_name">Name or Nickname (example: Mom, Aunt Linda, Ryan)</label>
+              { addRelationshipError ? <div>A contact with that name already exists</div> : ''}
               <RaisedButton className="btn-margin" onClick={this.addRelationship} label="Add" />
-              <BubbleGraphicStatic relationship={localRelationship}/>
             </div>
           </div>
         </form>
@@ -64,10 +70,10 @@ class AddRelationshipForm extends Component {
 }
 
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ( { loggedInUser, relationshipError} ) => {
+const mapStateToProps = ( { loggedInUser, addRelationshipError} ) => {
 	return {
     loggedInUser,
-    relationshipError
+    addRelationshipError
 	};
 };
 
