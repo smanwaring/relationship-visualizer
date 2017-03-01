@@ -87,7 +87,7 @@ ReactDOM.render(
 	    <Router history={browserHistory}>
 			<Route path="/" component={Root} auth={auth}>
 				<Route path="/home" component={Homepage} onEnter={requireAuth}>
-					<Route path="/relationships" component={AllBubbles}  onEnter={onAllBubblesEnter}/>
+					<Route path="/relationships" component={AllBubbles}  onEnter={onAllBubblesEnter} />
 					<Route path="/relationship/:id" component={OneBubbleContainer} onEnter={onOneRelationshipEnter} />
         	<Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter} />
 				</Route>
