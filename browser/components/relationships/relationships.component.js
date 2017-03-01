@@ -3,21 +3,25 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton'; 
 import { CirclePicker } from 'react-color';
 import { browserHistory } from 'react-router';
+import RelationshipReminder from './relationships-reminder.component';
 
 class Test extends Component {
 
   render() {
     const { relationships } = this.props;
-    console.log(relationships)
+    const showAddReminder = relationships.length < 1;
     return (
       <div>
+        {showAddReminder ?
+          <RelationshipReminder />
+          :
         <ul className="flex-container">
           {relationships && relationships.map( (relationship,i) => {
             const relationShipStyle = {
               background: relationship.color,
-              width: relationship.score*10,
-              height: relationship.score*10
-            }
+              width: 220,
+              height: 220
+            };
             return (
               <li key={relationship.id}>
                 <div className="bubble-container">
@@ -27,9 +31,10 @@ class Test extends Component {
                   </div>
                 </div>
               </li>
-            )
+            );
             })}
         </ul>
+        }
       </div>
     );
   }

@@ -12,7 +12,7 @@ class Homepage extends React.Component {
     const { relationships, selectedRelationship } = this.props;
     return (
       <div>
-        <div className="slide-out-menu"><MainMenu auth={this.props.auth}/>
+        <div className="slide-out-menu nav"><MainMenu auth={this.props.auth}/>
         </div>
           <div>
             {
