@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Bubble from './Bubble';
 import BubbleMenu from './BubbleMenu';
 import { expandBubble } from '../d3/bubbleD3';
-import { incrementScore } from '../reducers/relationships';
+import { incrementScore } from './relationships/relationships.reducer';
 
 
 

@@ -48,10 +48,3 @@ export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(Relationships);
-
-                /*<div className="bubble-container">
-                  <div className="bubble-container-center">
-                    <div>{relationship.name}</div>
-                    <div className="flex-bubble" style={relationshipStyle}></div>
-                  </div>
-                </div>*/

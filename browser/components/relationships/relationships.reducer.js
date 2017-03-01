@@ -1,13 +1,13 @@
 import axios from 'axios';
-import { animateBubbles, expandBubble } from '../d3/bubbleD3';
+import { animateBubbles, expandBubble } from '../../d3/bubbleD3';
 
-// constants
+/* ------- ACTION TYPES/CONTSTANTS --------*/
 const SET_RELATIONSHIPS = 'SET_RELATIONSHIPS';
 const SET_RELATIONSHIP = 'SET_RELATIONSHIP';
 const ADD_TO_SCORE = 'ADD_TO_SCORE';
 const ADD_RELATIONSHIP = 'ADD_RELATIONSHIP';
 
-// sync action creators
+/* ------- ACTION CREATORS --------*/
 export const setRelationships = (relationships) => ({
   type: SET_RELATIONSHIPS,
   relationships
@@ -19,7 +19,7 @@ export const concatRelationship = (createdRelationship) => ({
 });
 
 
-// async action creators
+/* ------- DISPATCHERS --------*/
 export const fetchRelationshipsByUser = ({ id }) => dispatch => {
   return axios.get(`/api/relationship/user/${id}`)
   .then(relationships => {
@@ -39,11 +39,11 @@ export const incrementScore = (relationship, user) => dispatch => {
   });
 };
 
-// initial state
+/* ------- INITIAL STATE --------*/
 const initialState = [];
 
-// reducer
-export const relationships = (state = initialState, action) => {
+/* ------- RELATIONSHIPS REDUCER --------*/
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_RELATIONSHIPS:
       return action.relationships;
@@ -53,3 +53,5 @@ export const relationships = (state = initialState, action) => {
       return state;
   }
 };
+
+export default reducer;

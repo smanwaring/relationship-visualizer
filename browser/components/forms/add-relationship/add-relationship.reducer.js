@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { concatRelationship } from '../../../reducers/relationships';
+import { concatRelationship } from '../../relationships/relationships.reducer';
 
 /* ------- ACTION TYPES/CONTSTANTS --------*/
 const RELATIONSHIP_ADD_ERROR = 'RELATIONSHIP_ADD_ERROR';

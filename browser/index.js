@@ -26,7 +26,7 @@ import OneBubbleContainer from './components/OneBubbleContainer';
 import Relationships from './components/relationships/relationships.component';
 
 /*--------- ACTION CREATORS --------- */
-import { fetchRelationshipsByUser, fetchOneRelationship } from './reducers/relationships';
+import { fetchRelationshipsByUser, fetchOneRelationship } from './components/relationships/relationships.reducer';
 import { fetchActivitiesByRelationship } from './reducers/activities';
 import { fetchSelectedRelationship } from './reducers/selectedRelationship';
 import { findOrCreateUser } from './components/login/login.reducer';

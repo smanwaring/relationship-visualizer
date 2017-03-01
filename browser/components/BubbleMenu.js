@@ -6,7 +6,6 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import AddActivityForm from './forms/AddActivityForm';
 import ChangeColor from './forms/ChangeColor';
-import BubbleGraphicStatic from './BubbleGraphicStatic';
 import { animateBubbles, expandBubble } from '../d3/bubbleD3';
 
 
