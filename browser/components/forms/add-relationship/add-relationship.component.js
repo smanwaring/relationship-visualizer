@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton'; 
 import { postRelationship, toggleRelExistsError } from './add-relationship.reducer';
 import { CirclePicker } from 'react-color';
+import { browserHistory } from 'react-router';
 
 class AddRelationshipForm extends Component {
   constructor(props) {
@@ -31,10 +32,9 @@ class AddRelationshipForm extends Component {
    }
 
    addRelationship() {
-     const name = this.state.name.toUpperCase();
      let relationshipInfo = {
        userId: this.props.loggedInUser.id,
-       name: name,
+       name: this.state.name,
        type: this.state.type,
        color: this.state.color,
        score: 10
