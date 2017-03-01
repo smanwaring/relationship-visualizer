@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { postRelationship, toggleRelExistsError } from './add-relationship.reducer';
 import { CirclePicker } from 'react-color';
 import RelationshipBubble from '../../relationship-bubble/relationship-bubble.component';
+import { toggleStateModal } from '../../main-menu/main-menu.reducer';
 
 class AddRelationshipForm extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class AddRelationshipForm extends Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.addRelationship = this.addRelationship.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
   }
 
   componentDidUpdate() {
@@ -41,11 +43,18 @@ class AddRelationshipForm extends Component {
      };
      console.log(relationshipInfo)
      this.props.addRelationship(relationshipInfo);
+     this.handleModalClose();
    }
 
    handleColorChange(color, event) {
     event.preventDefault();
     this.setState( { color: color.hex } );
+   }
+
+   handleModalClose(){
+    if (!this.props.addRelationshipError) {
+      this.props.closeAddRelationshipModal('showAddRelationshipModal', false);
+    }
    }
 
   render() {
@@ -95,6 +104,9 @@ const  mapDispatchToProps = (dispatch) => {
     },
     toggleError: (bool) => {
       dispatch( toggleRelExistsError(bool) );
+    },
+    closeAddRelationshipModal: (str, bool) => {
+      dispatch( toggleStateModal(str, bool) );
     }
   };
 };
