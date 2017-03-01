@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-// constants
+/* ------- ACTION TYPES/CONTSTANTS --------*/
 const SET_LOGGEDIN_USER = 'SET_LOGGEDIN_USER';
 const CLEAR_LOGGED_IN_USER = 'CLEAR_LOGGED_IN_USER';
 
-// sync action creators
+/* ------- ACTION CREATORS --------*/
 export const setLoggedInUser = (foundUser) => ({
   type: SET_LOGGEDIN_USER,
   foundUser
@@ -14,7 +14,7 @@ export const clearLoggedInUser = () => ({
   type: CLEAR_LOGGED_IN_USER
 });
 
-// async action creators
+/* ------- DISPATCHERS --------*/
 export const findOrCreateUser = userDetails => dispatch => {
   return axios.post('/api/user', userDetails)
   .then(res => res.data)
@@ -23,7 +23,7 @@ export const findOrCreateUser = userDetails => dispatch => {
   });
 };
 
-// login reducer
+/* ------- LOGIN REDUCER --------*/
 const reducer = (state = {}, { type, foundUser }) => {
   switch (type) {
     case SET_LOGGEDIN_USER:
@@ -36,5 +36,3 @@ const reducer = (state = {}, { type, foundUser }) => {
 };
 
 export default reducer;
-
-

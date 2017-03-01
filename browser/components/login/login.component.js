@@ -1,17 +1,15 @@
 import React, { PropTypes as T } from 'react';
-import AuthService from '../utils/AuthService';
-import { hashHistory } from 'react-router';
-// import styles from './styles.module.css'
+import AuthService from '../../utils/AuthService';
 
 class Login extends React.Component {
-    constructor(props){
-        super(props);
-        this.login = this.login.bind(this);
-    }
+  constructor(props){
+    super(props);
+    this.login = this.login.bind(this);
+  }
 
-    login(){
-        this.props.auth.login();
-    }
+  login(){
+    this.props.auth.login();
+  }
 
   render() {
     const { auth } = this.props;
@@ -26,8 +24,8 @@ class Login extends React.Component {
 
 //type checking
 Login.propTypes = {
-    location: T.object,
-    auth: T.instanceOf(AuthService)
+  location: T.object,
+  auth: T.instanceOf(AuthService)
 };
 
 export default Login;

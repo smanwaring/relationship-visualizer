@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { clearLoggedInUser } from '../../reducers/login';
+import { clearLoggedInUser } from '../login/login.reducer';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
