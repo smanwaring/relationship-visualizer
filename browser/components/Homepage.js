@@ -14,7 +14,7 @@ class Homepage extends React.Component {
       <div>
         <div className="slide-out-menu"><MainMenu auth={this.props.auth}/>
         </div>
-          <div className="container">
+          <div>
             {
               this.props.children && React.cloneElement(this.props.children, {
                 relationships,
