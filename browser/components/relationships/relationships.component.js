@@ -1,40 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton'; 
-import { CirclePicker } from 'react-color';
-import { browserHistory } from 'react-router';
+import RelationshipReminder from './relationships-reminder.component';
+import RelationshipBubble from '../relationship-bubble/relationship-bubble.component';
 
-class Test extends Component {
-
+/* -----------------    COMPONENT     ------------------ */
+class Relationships extends Component {
   render() {
     const { relationships } = this.props;
-    console.log(relationships)
+    const showAddReminder = relationships.length < 1;
     return (
       <div>
-        <ul className="flex-container">
+        {showAddReminder ?
+          <RelationshipReminder />
+          :
+        <ul className="flex-container bubble-padding">
           {relationships && relationships.map( (relationship,i) => {
-            const relationShipStyle = {
+            const relationshipStyle = {
               background: relationship.color,
-              width: relationship.score*10,
-              height: relationship.score*10
-            }
+              width: 220,
+              height: 220
+            };
             return (
               <li key={relationship.id}>
-                <div className="bubble-container">
-                  <div className="bubble-container-center">
-                    <div>{relationship.name}</div>
-                    <div className="flex-bubble" style={relationShipStyle}></div>
-                  </div>
-                </div>
+                <RelationshipBubble name={relationship.name} relationshipStyle={relationshipStyle} />
               </li>
-            )
+            );
             })}
         </ul>
+        }
       </div>
     );
   }
 }
-
 /* -----------------    CONTAINER     ------------------ */
 const mapStateToProps = ( { relationships } ) => {
 	return {
@@ -50,4 +47,4 @@ const  mapDispatchToProps = (dispatch) => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Test);
+)(Relationships);

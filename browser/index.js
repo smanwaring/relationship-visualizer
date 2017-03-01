@@ -22,12 +22,11 @@ import Root from './components/Root';
 import Homepage from './components/Homepage';
 import Login from './components/login/login.component';
 import ActivityInfo from './components/ActivityInfo';
-import AllBubbles from './components/AllBubbles';
 import OneBubbleContainer from './components/OneBubbleContainer';
 import Relationships from './components/relationships/relationships.component';
 
 /*--------- ACTION CREATORS --------- */
-import { fetchRelationshipsByUser, fetchOneRelationship } from './reducers/relationships';
+import { fetchRelationshipsByUser, fetchOneRelationship } from './components/relationships/relationships.reducer';
 import { fetchActivitiesByRelationship } from './reducers/activities';
 import { fetchSelectedRelationship } from './reducers/selectedRelationship';
 import { findOrCreateUser } from './components/login/login.reducer';
@@ -62,7 +61,7 @@ const onActivityInfoEnter = ({ params }) => {
 	store.dispatch(fetchSelectedRelationship({ relationshipId: params.id }));
 };
 
-const onAllBubblesEnter = (nextState) => {
+const onRelationshipsEnter = (nextState) => {
 	if(!store.getState().loggedInUser.id) return;
 	store.dispatch(fetchRelationshipsByUser({ id: store.getState().loggedInUser.id }))
 	.then(response => {
@@ -88,7 +87,7 @@ ReactDOM.render(
 	    <Router history={browserHistory}>
 			<Route path="/" component={Root} auth={auth}>
 				<Route path="/home" component={Homepage} onEnter={requireAuth}>
-					<Route path="/relationships" component={Relationships}  onEnter={onAllBubblesEnter} />
+					<Route path="/relationships" component={Relationships}  onEnter={onRelationshipsEnter} />
 					<Route path="/relationship/:id" component={OneBubbleContainer} onEnter={onOneRelationshipEnter} />
         	<Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter} />
 				</Route>

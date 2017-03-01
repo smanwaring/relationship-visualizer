@@ -67,6 +67,12 @@ SLIDE OUT MENU
   color: lightblue;
 }
 
+.nav {
+  background-color: transparent;
+  position: fixed;
+  z-index: 10;
+}
+
 
 /*
 *
@@ -92,6 +98,8 @@ Test Bubble
 *
 *
 */
+
+/* Max bubble size is 220 */
 
 .flex-container {
   padding: 0;
@@ -119,11 +127,27 @@ Test Bubble
 }
 
 .bubble-container {
-  height: 250px;
-  width: 250px;
+  height: 300px;
+  width: 300px;
   text-align: center;
 }
 
 .bubble-container-center {
   padding-top: 10%;
+}
+
+.bubble-padding {
+  padding-top: 50px;
+}
+
+
+/*
+Add relationships Reminder
+*/
+.center {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
 }

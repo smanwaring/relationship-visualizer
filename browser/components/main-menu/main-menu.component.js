@@ -12,6 +12,7 @@ import FlatButton from 'material-ui/FlatButton';
 import AddRelationshipForm from '../forms/add-relationship/add-relationship.component';
 import SettingsForm from '../forms/SettingsForm';
 
+/* -----------------    COMPONENT     ------------------ */
 class MainMenu extends React.Component {
 	constructor(props){
 		super(props);

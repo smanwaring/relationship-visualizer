@@ -1,6 +1,6 @@
 import React from 'react';
 import { combineReducers } from 'redux';
-import { relationships } from './reducers/relationships';
+import relationships from './components/relationships/relationships.reducer';
 import loggedInUser from './components/login/login.reducer';
 import activities from './reducers/activities';
 import selectedRelationship from './reducers/selectedRelationship';
