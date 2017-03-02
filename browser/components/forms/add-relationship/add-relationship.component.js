@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton'; 
-import { postRelationship, toggleRelExistsError } from './add-relationship.reducer';
+import RaisedButton from 'material-ui/RaisedButton';
+import { postRelationship, toggleRelExistsError, changeRelationshipAdded } from './add-relationship.reducer';
 import { CirclePicker } from 'react-color';
 import RelationshipBubble from '../../relationship-bubble/relationship-bubble.component';
 import { toggleStateModal } from '../../main-menu/main-menu.reducer';
@@ -20,12 +20,20 @@ class AddRelationshipForm extends Component {
     this.handleModalClose = this.handleModalClose.bind(this);
   }
 
+  componentDidMount(){
+    this.props.toggleRelationshipAdded(false);
+  }
+
   componentDidUpdate() {
     const self = this;
-    if (this.props.toggleError) {
+    if (this.props.addRelationshipStatus.addRelationshipError) {
       setTimeout(function () {
         self.props.toggleError(false);
       }, 5000);
+    }
+    if (this.props.addRelationshipStatus.relationshipAdded){
+      console.log("should be closing");
+      this.handleModalClose();
     }
   }
 
@@ -41,9 +49,7 @@ class AddRelationshipForm extends Component {
        color: this.state.color,
        score: 10
      };
-     console.log(relationshipInfo)
      this.props.addRelationship(relationshipInfo);
-     this.handleModalClose();
    }
 
    handleColorChange(color, event) {
@@ -52,18 +58,16 @@ class AddRelationshipForm extends Component {
    }
 
    handleModalClose(){
-    if (!this.props.addRelationshipError) {
       this.props.closeAddRelationshipModal('showAddRelationshipModal', false);
-    }
    }
 
   render() {
-    const { addRelationshipError } = this.props;
+    const { addRelationshipError } = this.props.addRelationshipStatus;
     const relationshipStyle = {
       background: this.state.color,
       width: 175,
       height: 175
-    }
+    };
     return (
       <div>
         <form>
@@ -90,10 +94,10 @@ class AddRelationshipForm extends Component {
 }
 
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ( { loggedInUser, addRelationshipError } ) => {
+const mapStateToProps = ( { loggedInUser, addRelationshipStatus } ) => {
 	return {
     loggedInUser,
-    addRelationshipError
+    addRelationshipStatus
 	};
 };
 
@@ -107,6 +111,9 @@ const  mapDispatchToProps = (dispatch) => {
     },
     closeAddRelationshipModal: (str, bool) => {
       dispatch( toggleStateModal(str, bool) );
+    },
+    toggleRelationshipAdded: (bool) => {
+      dispatch( changeRelationshipAdded(bool) );
     }
   };
 };
