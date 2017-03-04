@@ -22,7 +22,7 @@ class Relationships extends Component {
             };
             return (
               <li key={relationship.id}>
-                <RelationshipBubble name={relationship.name} relationshipStyle={relationshipStyle} />
+                <RelationshipBubble name={relationship.name} relationshipStyle={relationshipStyle}/>
               </li>
             );
             })}

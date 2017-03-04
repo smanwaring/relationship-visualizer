@@ -8,18 +8,16 @@ const Activity = db.define('activity', {
     validate: {
       notEmpty: true
     }
-  },
-  type: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
+  }
+}, {
+  getterMethods: {
+    score: (days) => {
+      const difference = (new Date()).getTime() - this.date.getTime();
+      const ageScore = days - difference / (1000 * 60 * 60 * 24);
+      return ageScore * this.type.weight;
     }
-  },
-   score: {
-    type: Sequelize.FLOAT,
-    allowNull: false
-  },
+  }
+
 });
 
 module.exports = Activity;

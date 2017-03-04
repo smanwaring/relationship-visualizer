@@ -124,6 +124,8 @@ Test Bubble
   font-size: 3em;
   font-weight: bold;
   color: white;
+  position: relative;
+	cursor: default; 
 }
 
 .bubble-container {
@@ -198,3 +200,4 @@ add relationship modal
   .aside-1 { order: 1; } 
   .main    { order: 2; }
 }
+
