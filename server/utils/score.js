@@ -1,17 +1,25 @@
+//The pixelCalculator Function determines the pixel score of a relationship nova on the current day.
 const numDays = 28,
       maxPixels = 220,
       minPixels = 50,
       rangeMax = maxPixels / minPixels,
-      rangeMin = 1,
       //what we've determined to be the highest score, based on average of the frequency and type weight
       maxScore = numDays * (numDays + 1) / 2,
-      //7.5 represents what dev. thinks is a good ratio of contact to warrent highest pixels
-      topScore = maxScore / 7.5;
+      //7.5 represents what dev thinks is a good ratio of contact to warrent highest pixels render
+      topScore = maxScore / 7.5,
+      typeScore = {
+        'face-to-face': 1,
+        call: 0.8,
+        email: 0.5,
+        'letter/postcard': 0.5,
+        social: 0.2,
+        text: 0.2
+      };
 
 //function takes an array of activity
-export const pixelCalculator = ( arr ) => {
+const pixelCalculator = ( arr ) => {
   //for each point of activity in arr calculate recency score and type score
-  const total = arr.map( activity => activity.score(numDays))
+  const total = arr.map( activity => activity.ageScore(numDays) * typeScore[activity.type])
                    .reduce( (pre, cur) => pre + cur);
   //if the total is zero return the min size of pixels
   if (total === 0) {
@@ -23,4 +31,7 @@ export const pixelCalculator = ( arr ) => {
     return total / topScore * rangeMax * minPixels;
   }
 };
+
+module.exports = pixelCalculator;
+
 

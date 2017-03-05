@@ -11,15 +11,15 @@ const seedRelationship = () => db.Promise.each([
 ], relationship => db.model('relationship').create(relationship));
 
 const seedActivity = () => db.Promise.each([
-    { date: new Date(2016, 1, 30), type: 'email', relationshipId: 1 },
-    { date: new Date(2016, 2, 15), type: 'text', relationshipId: 1 },
-    { date: new Date(2016, 1, 15), type: 'call', relationshipId: 1 },
-    { date: new Date(2016, 1, 23), type: 'face-to-face', relationshipId: 2 },
-    { date: new Date(2016, 1, 27), type: 'social', relationshipId: 2 },
-    { date: new Date(2016, 3, 4), type: 'email', relationshipId: 2 },
-    { date: new Date(2016, 4, 18), type: 'text', relationshipId: 3 },
-    { date: new Date(2016, 6, 25), type: 'letter/postcard', relationshipId: 3 },
-    { date: new Date(2016, 3, 7), type: 'call', relationshipId: 3 },
+    { date: new Date(2017, 1, 28), type: 'email', relationshipId: 1 },
+    { date: new Date(2017, 2, 1), type: 'text', relationshipId: 1 },
+    { date: new Date(2017, 1, 27), type: 'call', relationshipId: 1 },
+    { date: new Date(2017, 1, 27), type: 'face-to-face', relationshipId: 2 },
+    { date: new Date(2017, 1, 20), type: 'social', relationshipId: 2 },
+    { date: new Date(2017, 2, 4), type: 'email', relationshipId: 2 },
+    { date: new Date(2017, 2, 6), type: 'text', relationshipId: 3 },
+    { date: new Date(2017, 2, 5), type: 'letter/postcard', relationshipId: 3 },
+    { date: new Date(2017, 2, 4), type: 'call', relationshipId: 3 },
 ], activity => db.model('activity').create(activity));
 
 

@@ -1,6 +1,8 @@
 const express = require('express');
 const relationshipRouter = express.Router();
 const db = require('../../db');
+const Activity = db.model('activity');
+const scoreGenerator = require('../utils/score');
 
 // get all relationships
 relationshipRouter.get('/', (req, res, next) => {
@@ -20,17 +22,44 @@ relationshipRouter.get('/:relationshipID', (req, res, next) => {
   .catch(next);
 });
 
-// get all relationships by user
+// // get all relationships by user
+// relationshipRouter.get('/user/:userID', (req, res, next) => {
+//   db.model('relationship').findAll({
+//     where: { userId: req.params.userID },
+//     order: ['id']
+//   })
+//   .then(relationships => {
+//     res.json(relationships);
+//   })
+//   .catch(next);
+// });
+
+// get all relationships by user and generate the score for each
 relationshipRouter.get('/user/:userID', (req, res, next) => {
   db.model('relationship').findAll({
-    where: { userId: req.params.userID },
-    order: ['id']
+    where: { 
+      userId: req.params.userID
+    },
+    include: [{model: Activity }]
   })
   .then(relationships => {
-    res.json(relationships);
+    return relationships.map(relationship => {
+      let relationshipObj = {
+        name: relationship.name,
+        type: relationship.type,
+        color: relationship.color,
+        id: relationship.id
+      };
+      relationshipObj.score = scoreGenerator(relationship.activities);
+      return relationshipObj;
+    });
   })
+  .then(relationshipsWithScore => res.json(relationshipsWithScore))
   .catch(next);
 });
+
+
+
 
 // create a new relationship if the name doesn't already exist with that specific user
 relationshipRouter.post('/', (req, res, next) => {
