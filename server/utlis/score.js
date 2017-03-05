@@ -8,7 +8,7 @@ const numDays = 28,
       //7.5 represents what dev. thinks is a good ratio of contact to warrent highest pixels
       topScore = maxScore / 7.5;
 
-//function takes an array of contacts from the past numDays
+//function takes an array of activity
 export const pixelCalculator = ( arr ) => {
   //for each point of activity in arr calculate recency score and type score
   const total = arr.map( activity => activity.score(numDays))

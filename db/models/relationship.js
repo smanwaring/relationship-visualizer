@@ -14,7 +14,14 @@ const Relationship = db.define('relationship', {
     values: ['family', 'friend', 'professional', 'other'],
     defaultValue: 'family'
   },
-  color: Sequelize.STRING
+  color: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: '#2196f3',
+    validate: {
+      notEmpty: true
+    }
+  }
 });
 
 module.exports = Relationship;
