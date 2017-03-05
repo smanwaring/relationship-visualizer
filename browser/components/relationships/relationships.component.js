@@ -14,11 +14,11 @@ class Relationships extends Component {
           <RelationshipReminder />
           :
         <ul className="flex-container bubble-padding">
-          {relationships && relationships.map( (relationship,i) => {
+          {relationships && relationships.map( (relationship) => {
             const relationshipStyle = {
               background: relationship.color,
-              width: 220,
-              height: 220
+              width: relationship.score,
+              height: relationship.score
             };
             return (
               <li key={relationship.id}>

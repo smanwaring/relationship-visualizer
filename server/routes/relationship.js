@@ -4,7 +4,7 @@ const db = require('../../db');
 const Activity = db.model('activity');
 const scoreGenerator = require('../utils/score');
 
-// get all relationships
+// GET all relationships
 relationshipRouter.get('/', (req, res, next) => {
   db.model('relationship').findAll()
   .then(relationships => {
@@ -13,7 +13,7 @@ relationshipRouter.get('/', (req, res, next) => {
   .catch(next);
 });
 
-// get relationship by ID
+// GET relationship by ID
 relationshipRouter.get('/:relationshipID', (req, res, next) => {
   db.model('relationship').findById(req.params.relationshipID)
   .then(relationship => {
@@ -22,22 +22,10 @@ relationshipRouter.get('/:relationshipID', (req, res, next) => {
   .catch(next);
 });
 
-// // get all relationships by user
-// relationshipRouter.get('/user/:userID', (req, res, next) => {
-//   db.model('relationship').findAll({
-//     where: { userId: req.params.userID },
-//     order: ['id']
-//   })
-//   .then(relationships => {
-//     res.json(relationships);
-//   })
-//   .catch(next);
-// });
-
-// get all relationships by user and generate the score for each
+//GET all relationships by user and generate the score for each before sending it back
 relationshipRouter.get('/user/:userID', (req, res, next) => {
   db.model('relationship').findAll({
-    where: { 
+    where: {
       userId: req.params.userID
     },
     include: [{model: Activity }]
@@ -59,9 +47,7 @@ relationshipRouter.get('/user/:userID', (req, res, next) => {
 });
 
 
-
-
-// create a new relationship if the name doesn't already exist with that specific user
+// POST a new relationship if the name doesn't already exist with that specific user
 relationshipRouter.post('/', (req, res, next) => {
   db.model('relationship').findOrCreate({
     where: {
@@ -85,7 +71,7 @@ relationshipRouter.post('/', (req, res, next) => {
   .catch(next);
 });
 
-// update a relationship
+// PUT/UPDATE a relationship
 relationshipRouter.put('/:relationshipID', (req, res, next) => {
   db.model('relationship').findById(req.params.relationshipID)
   .then(relationship => {
@@ -97,7 +83,7 @@ relationshipRouter.put('/:relationshipID', (req, res, next) => {
   .catch(next);
 });
 
-// delete a relationship
+// DELETE a relationship
 relationshipRouter.delete('/:relationshipID', (req, res, next) => {
   db.model('relationship').findById(req.params.relationshipID)
   .then(relationship => {

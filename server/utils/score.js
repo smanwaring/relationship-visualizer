@@ -18,6 +18,10 @@ const numDays = 28,
 
 //function takes an array of activity
 const pixelCalculator = ( arr ) => {
+  //if no activity for this relationship, return minimum pixel amt.
+  if (arr.length < 1) {
+    return minPixels;
+  }
   //for each point of activity in arr calculate recency score and type score
   const total = arr.map( activity => activity.ageScore(numDays) * typeScore[activity.type])
                    .reduce( (pre, cur) => pre + cur);
