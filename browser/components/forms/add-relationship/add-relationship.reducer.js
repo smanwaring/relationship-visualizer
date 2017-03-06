@@ -25,7 +25,7 @@ export const postRelationship = ( relationshipInfo ) => dispatch => {
       dispatch( toggleRelExistsError(true) );
       dispatch( changeRelationshipAdded(false) );
     } else {
-      dispatch( concatRelationship(res) );
+      dispatch( concatRelationship(res.data) );
       dispatch( changeRelationshipAdded(true) );
     }
   })
