@@ -22,9 +22,9 @@ class Relationships extends Component {
               height: relationship.score
             };
             return (
-              <Link to={`/relationship/user/${loggedInUser.id}/rel/${relationship.id}`} key={relationship.id}><li>
-                <RelationshipBubble name={relationship.name} relationshipStyle={relationshipStyle}/>
-              </li></Link>
+              <li key={relationship.id}>
+                <Link to={`/relationship/user/${loggedInUser.id}/rel/${relationship.id}`}><RelationshipBubble name={relationship.name} relationshipStyle={relationshipStyle}/>
+              </Link></li>
             );
             })}
         </ul>

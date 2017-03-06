@@ -3,13 +3,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, hashHistory, IndexRoute, IndexRedirect, browserHistory } from 'react-router';
+import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import store from './store';
 import AuthService from './utils/AuthService';
 
-import { animateBubbles, expandBubble } from './d3/bubbleD3';
+import { animateBubbles } from './d3/bubbleD3';
 
 //instantiate the authService
 const auth = new AuthService('tI3Yb8b6o4t7iOXLO4vffTYVpsHptMjl', 'stephaniemanwaring.auth0.com');
@@ -22,7 +22,6 @@ import Root from './components/Root';
 import Homepage from './components/Homepage';
 import Login from './components/login/login.component';
 import ActivityInfo from './components/ActivityInfo';
-import OneBubbleContainer from './components/OneBubbleContainer';
 import Relationships from './components/relationships/relationships.component';
 import Relationship from './components/relationship/relationship.component';
 

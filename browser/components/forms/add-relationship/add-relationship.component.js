@@ -32,7 +32,6 @@ class AddRelationshipForm extends Component {
       }, 5000);
     }
     if (this.props.addRelationshipStatus.relationshipAdded){
-      console.log("should be closing");
       this.handleModalClose();
     }
   }
