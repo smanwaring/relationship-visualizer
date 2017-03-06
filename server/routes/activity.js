@@ -32,10 +32,9 @@ activityRouter.get('/relationship/:relationshipID', (req, res, next) => {
 
 // create a new activity
 activityRouter.post('/', (req, res, next) => {
-  console.log(req.body);
   db.model('activity').create(req.body)
   .then(activity => {
-    res.status(201).json(activity)
+    res.status(201).json(activity);
   })
   .catch(next);
 })
