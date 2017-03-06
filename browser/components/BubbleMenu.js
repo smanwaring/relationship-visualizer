@@ -27,7 +27,6 @@ class BubbleMenu extends Component {
   
   handleColorPickerOpen() {
     this.setState({ colorPickerOpen: true });
-    console.log("YO YO YO")
     expandBubble(this.props.relationship);
   }
 

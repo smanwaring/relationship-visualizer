@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CirclePicker } from 'react-color';
 import RaisedButton from 'material-ui/RaisedButton';
-import { changeColor, saveColor } from '../../reducers/selectedRelationship'
+import { changeColor, saveColor } from '../../components/relationship/relationship.reducer'
 
 class ColorPicker extends Component {
   constructor() {

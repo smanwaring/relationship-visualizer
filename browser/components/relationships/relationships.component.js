@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RelationshipReminder from './relationships-reminder.component';
 import RelationshipBubble from '../relationship-bubble/relationship-bubble.component';
+import { Link } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
 class Relationships extends Component {
   render() {
-    const { relationships } = this.props;
+    const { relationships, loggedInUser } = this.props;
     const showAddReminder = relationships.length < 1;
     return (
       <div>
@@ -21,9 +22,9 @@ class Relationships extends Component {
               height: relationship.score
             };
             return (
-              <li key={relationship.id}>
+              <Link to={`/relationship/user/${loggedInUser.id}/rel/${relationship.id}`} key={relationship.id}><li>
                 <RelationshipBubble name={relationship.name} relationshipStyle={relationshipStyle}/>
-              </li>
+              </li></Link>
             );
             })}
         </ul>
@@ -33,9 +34,10 @@ class Relationships extends Component {
   }
 }
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ( { relationships } ) => {
+const mapStateToProps = ( { relationships, loggedInUser } ) => {
 	return {
-    relationships
+    relationships,
+    loggedInUser
 	};
 };
 

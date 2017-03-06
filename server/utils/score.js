@@ -18,7 +18,7 @@ const numDays = 28,
 
 //function takes an array of activity
 const pixelCalculator = ( arr ) => {
-  //if no activity for this relationship, return minimum pixel amt.
+  //if no activity for this relationship, return minimum pixel amt
   if (arr.length < 1) {
     return minPixels;
   }

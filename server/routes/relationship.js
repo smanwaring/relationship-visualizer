@@ -14,11 +14,29 @@ relationshipRouter.get('/', (req, res, next) => {
 });
 
 // GET relationship by ID
-relationshipRouter.get('/:relationshipID', (req, res, next) => {
-  db.model('relationship').findById(req.params.relationshipID)
-  .then(relationship => {
-    res.json(relationship);
+relationshipRouter.get('/user/:userId/rel/:relationshipId', (req, res, next) => {
+  db.model('relationship').findOne({
+    where: {
+      id: req.params.relationshipId,
+      userId: req.params.userId
+    },
+    include: [ {model: Activity} ]
   })
+  .then(relationship => {
+    if (!relationship){
+      res.sendStatus(404);
+    } else {
+      let relationshipObj = {
+          name: relationship.name,
+          type: relationship.type,
+          color: relationship.color,
+          id: relationship.id
+      };
+      relationshipObj.score = scoreGenerator(relationship.activities);
+      return relationshipObj;
+    }
+  })
+  .then(relationshipObject => res.json(relationshipObject))
   .catch(next);
 });
 
