@@ -13,8 +13,7 @@ Relationship.belongsTo(User); // user will have relationship_id // relationship.
 Relationship.hasMany(Activity); // activity will have a relationship_id // relationship.getActivity/setActivity
 Activity.belongsTo(Relationship); // relationship will have activity_id // activity.getRelationship/setRelationship
 
-
 Relationship.hasMany(SpecialDates); // specialDates will have a relationship_id // relationship.getSpecialDates/setSpecialDates
 SpecialDates.belongsTo(Relationship); // relationship will have specialDates_id // specialDates.getRelationship/setRelationship
 
-module.exports = { Activity, Relationship, User };
+module.exports = { Activity, Relationship, User};

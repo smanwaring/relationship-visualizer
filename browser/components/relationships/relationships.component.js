@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RelationshipReminder from './relationships-reminder.component';
 import RelationshipBubble from '../relationship-bubble/relationship-bubble.component';
+import { Link } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
 class Relationships extends Component {
   render() {
-    const { relationships } = this.props;
+    const { relationships, loggedInUser } = this.props;
     const showAddReminder = relationships.length < 1;
     return (
       <div>
@@ -14,16 +15,16 @@ class Relationships extends Component {
           <RelationshipReminder />
           :
         <ul className="flex-container bubble-padding">
-          {relationships && relationships.map( (relationship,i) => {
+          {relationships && relationships.map( (relationship) => {
             const relationshipStyle = {
               background: relationship.color,
-              width: 220,
-              height: 220
+              width: relationship.score,
+              height: relationship.score
             };
             return (
               <li key={relationship.id}>
-                <RelationshipBubble name={relationship.name} relationshipStyle={relationshipStyle} />
-              </li>
+                <Link to={`/relationship/user/${loggedInUser.id}/rel/${relationship.id}`}><RelationshipBubble name={relationship.name} relationshipStyle={relationshipStyle}/>
+              </Link></li>
             );
             })}
         </ul>
@@ -33,9 +34,10 @@ class Relationships extends Component {
   }
 }
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ( { relationships } ) => {
+const mapStateToProps = ( { relationships, loggedInUser } ) => {
 	return {
-    relationships
+    relationships,
+    loggedInUser
 	};
 };
 

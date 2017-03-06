@@ -5,7 +5,7 @@ export default ({ relationshipStyle, name }) => {
     <div className="bubble-container">
       <div className="bubble-container-center">
         <div>{name}</div>
-        <div className="flex-bubble" style={relationshipStyle} />
+        <div className="flex-bubble" style={relationshipStyle}/>
       </div>
     </div>
   );

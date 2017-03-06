@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import * as d3 from "d3";
 import { expandBubble } from '../d3/bubbleD3';
-import { fetchSelectedRelationship } from '../reducers/selectedRelationship';
+import { fetchSelectedRelationship } from '../components/relationship/relationship.reducer';
 
 
 class Bubble extends Component {

@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Link} from 'react-router';
+import Bubble from '../relationship-bubble/relationship-bubble.component';
+import { incrementScore } from '../relationships/relationships.reducer';
+import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
-import AddActivityForm from './forms/AddActivityForm';
-import ChangeColor from './forms/ChangeColor';
-import { animateBubbles, expandBubble } from '../d3/bubbleD3';
+import AddActivityForm from '../forms/add-activity/add-activity.component';
+import ChangeColor from '../forms/ChangeColor';
 
-
-class BubbleMenu extends Component {
-  constructor(props) {
+/* -----------------    COMPONENT     ------------------ */
+class Relationship extends Component {
+ constructor(props) {
     super(props);
     this.state = {
       addActivityOpen: false,
@@ -49,11 +50,17 @@ class BubbleMenu extends Component {
         onTouchTap={this.handleColorPickerClose}
       />
     ]
-    const { relationship, loggedInUser, incrementScore } = this.props;
+    const { selectedRelationship, loggedInUser, incrementScoreProp} = this.props;
     const { colorPickerModalStyle } = style;
+    const relationshipStyle = {
+      background: selectedRelationship.color,
+      width: selectedRelationship.score,
+      height: selectedRelationship.score
+    };
     return (
       <div>
-        <Link to={`/relationship/${relationship.id}/activities`}>
+        <Bubble name={selectedRelationship.name} relationshipStyle={relationshipStyle} />
+        <Link to={`/relationship/${selectedRelationship.id}/activities`}>
           <RaisedButton label="View Activities" primary={true} />
         </Link>
         <RaisedButton label="Add Activity" secondary={true} onTouchTap={this.handleAddActivityOpen} id="addActivity"/>
@@ -64,11 +71,11 @@ class BubbleMenu extends Component {
             open={this.state.addActivityOpen}
             onRequestClose={this.handleAddActivityClose}
           >
-            <AddActivityForm relationshipId={relationship.id} autoFocus="true"/>
+            <AddActivityForm relationshipId={selectedRelationship.id} autoFocus="true"/>
           </Dialog>
-          <RaisedButton 
+          <RaisedButton
             label="Increment Score" 
-            onTouchTap={() => incrementScore(relationship, loggedInUser)} />  
+            onTouchTap={() => incrementScoreProp(selectedRelationship, loggedInUser)} />  
           <RaisedButton label="Change Color" primary={true} onTouchTap={this.handleColorPickerOpen}/>
           <Dialog
             title="Choose a Color"
@@ -80,15 +87,10 @@ class BubbleMenu extends Component {
           >
             <div className="row">
               <div className="col s12">
-                <ChangeColor 
-                  relationshipId={this.props.relationship.id} 
+                <ChangeColor
+                  relationshipId={this.props.selectedRelationship.id} 
                   autoFocus="true"
                   handleClose={this.handleColorPickerClose}
-                />
-              </div>
-              <div className="col s12">
-                <BubbleGraphicStatic
-                  relationship={relationship}
                 />
               </div>
             </div>
@@ -99,15 +101,30 @@ class BubbleMenu extends Component {
 
 }
 
-
-
-export default BubbleMenu;
-
 const style = {
   colorPickerModalStyle: {
-    width: "30em"
+    width: '30em'
   }
-}
+};
+
+
+
 
 /* -----------------    CONTAINER     ------------------ */
+const mapStateToProps = ( { selectedRelationship, loggedInUser } ) => {
+	return {
+    selectedRelationship,
+    loggedInUser
+	};
+};
 
+const  mapDispatchToProps = (dispatch) => {
+  return {
+    incrementScoreProp: (relationship, loggedInUser) => dispatch(incrementScore(relationship, loggedInUser))
+  };
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Relationship);

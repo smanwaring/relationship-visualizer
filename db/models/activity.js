@@ -10,16 +10,19 @@ const Activity = db.define('activity', {
     }
   },
   type: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
+    type: Sequelize.ENUM,
+    values: ['face-to-face', 'call', 'email', 'text', 'social', 'letter/postcard'],
+    defaultValue: 'call'
+  }
+}, {
+  instanceMethods: {
+    ageScore: function(days) {
+      const oneDay = 1000 * 60 * 60 * 24;
+      const difference = (new Date().getTime() - this.date.getTime());
+      const ageScore = days - difference / oneDay;
+      return ageScore < 0 ? 0 : ageScore;
     }
-  },
-   score: {
-    type: Sequelize.FLOAT,
-    allowNull: false
-  },
+  }
 });
 
 module.exports = Activity;

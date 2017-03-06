@@ -9,20 +9,19 @@ const Relationship = db.define('relationship', {
       notEmpty: true
     }
   },
-  score: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-    defaultValue: 0,
-    validate: {
-      notEmpty: true
-    }
-  },
    type: {
     type: Sequelize.ENUM,
     values: ['family', 'friend', 'professional', 'other'],
     defaultValue: 'family'
   },
-  color: Sequelize.STRING
+  color: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: '#2196f3',
+    validate: {
+      notEmpty: true
+    }
+  }
 });
 
 module.exports = Relationship;
