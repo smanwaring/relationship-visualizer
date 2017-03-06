@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import AddActivityForm from '../forms/add-activity/add-activity.component';
-import ChangeColor from '../forms/ChangeColor';
+import ChangeColor from '../forms/change-color/change-color.component';
 
 /* -----------------    COMPONENT     ------------------ */
 class Relationship extends Component {
@@ -25,10 +25,8 @@ class Relationship extends Component {
 
   handleAddActivityOpen() {this.setState({ addActivityOpen: true })};
   handleAddActivityClose() {this.setState({ addActivityOpen: false })};
-  
   handleColorPickerOpen() {
     this.setState({ colorPickerOpen: true });
-    expandBubble(this.props.relationship);
   }
 
   handleColorPickerClose() {this.setState({ colorPickerOpen: false })}
@@ -73,9 +71,6 @@ class Relationship extends Component {
           >
             <AddActivityForm relationshipId={selectedRelationship.id} autoFocus="true"/>
           </Dialog>
-          <RaisedButton
-            label="Increment Score" 
-            onTouchTap={() => incrementScoreProp(selectedRelationship, loggedInUser)} />  
           <RaisedButton label="Change Color" primary={true} onTouchTap={this.handleColorPickerOpen}/>
           <Dialog
             title="Choose a Color"
