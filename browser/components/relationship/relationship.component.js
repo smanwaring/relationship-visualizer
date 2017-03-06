@@ -23,8 +23,8 @@ class Relationship extends Component {
     this.handleColorPickerClose = this.handleColorPickerClose.bind(this);
   }
 
-  handleAddActivityOpen() {this.setState({ addActivityOpen: true })};
-  handleAddActivityClose() {this.setState({ addActivityOpen: false })};
+  handleAddActivityOpen() {this.setState({ addActivityOpen: true })}
+  handleAddActivityClose() {this.setState({ addActivityOpen: false })}
   handleColorPickerOpen() {
     this.setState({ colorPickerOpen: true });
   }
@@ -69,9 +69,9 @@ class Relationship extends Component {
             open={this.state.addActivityOpen}
             onRequestClose={this.handleAddActivityClose}
           >
-            <AddActivityForm relationshipId={selectedRelationship.id} autoFocus="true"/>
+            <AddActivityForm relationshipId={selectedRelationship.id} autoFocus="true" />
           </Dialog>
-          <RaisedButton label="Change Color" primary={true} onTouchTap={this.handleColorPickerOpen}/>
+          <RaisedButton label="Change Color" primary={true} onTouchTap={this.handleColorPickerOpen} />
           <Dialog
             title="Choose a Color"
             actions={chooseColorActions}
