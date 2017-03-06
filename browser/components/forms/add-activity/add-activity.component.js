@@ -41,11 +41,11 @@ class AddActivityForm extends Component {
             floatingLabelText="Type"
           >
             <MenuItem value={null} primaryText="" />
-            <MenuItem value={'call'} primaryText="Call" />
-            <MenuItem value={'text'} primaryText="Text" />
-            <MenuItem value={'email'} primaryText="Email" />
-            <MenuItem value={'inPerson'} primaryText="In Person" />
-            <MenuItem value={'letter'} primaryText="Wrote Letter" />
+            <MenuItem value={'Call'} primaryText="Call" />
+            <MenuItem value={'Text'} primaryText="Text" />
+            <MenuItem value={'Email'} primaryText="Email" />
+            <MenuItem value={'In Person'} primaryText="In Person" />
+            <MenuItem value={'Wrote Letter'} primaryText="Wrote Letter" />
           </SelectField>
           <DatePicker hintText="Date" autoOk={true} onChange={this.handleDateChange} />
           <RaisedButton label="Submit" onClick={this.submitForm} disabled={ !date || !type } />

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RelationshipReminder from './relationships-reminder.component';
 import RelationshipBubble from '../relationship-bubble/relationship-bubble.component';
+import RelationshipsSingleBubble from './relationships-single-bubble.component';
 import { Link } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
@@ -23,8 +24,8 @@ class Relationships extends Component {
             };
             return (
               <li key={relationship.id}>
-                <Link to={`/relationship/user/${loggedInUser.id}/rel/${relationship.id}`}><RelationshipBubble name={relationship.name} relationshipStyle={relationshipStyle}/>
-              </Link></li>
+                <RelationshipsSingleBubble name={relationship.name} relationshipStyle={relationshipStyle} loggedInUser={loggedInUser} relationship={relationship} />
+              </li>
             );
             })}
         </ul>

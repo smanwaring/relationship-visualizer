@@ -11,8 +11,8 @@ const Activity = db.define('activity', {
   },
   type: {
     type: Sequelize.ENUM,
-    values: ['face-to-face', 'call', 'email', 'text', 'social', 'letter/postcard'],
-    defaultValue: 'call'
+    values: ['In Person', 'Call', 'Email', 'Text', 'Social', 'Wrote Letter'],
+    defaultValue: 'Call'
   }
 }, {
   instanceMethods: {

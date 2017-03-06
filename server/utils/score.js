@@ -8,12 +8,12 @@ const numDays = 28,
       //7.5 represents what dev thinks is a good ratio of contact to warrent highest pixels render
       topScore = maxScore / 7.5,
       typeScore = {
-        'face-to-face': 1,
-        call: 0.8,
-        email: 0.5,
-        'letter/postcard': 0.5,
-        social: 0.2,
-        text: 0.2
+        'In Person': 1,
+        Call: 0.8,
+        Email: 0.5,
+        'Wrote Letter': 0.5,
+        Social: 0.2,
+        Text: 0.2
       };
 
 //function takes an array of activity
