@@ -22,6 +22,7 @@ class SingleRelationship extends Component {
   }
 
   handleAddActivityOpen() {
+    this.setState({open: false});
     this.setState({ modalOpen: true });
   }
 
@@ -42,7 +43,6 @@ class SingleRelationship extends Component {
     this.setState({
       open: false,
     });
-    this.handleAddActivityOpen();
   }
 
 render(){
@@ -73,7 +73,7 @@ render(){
           animation={PopoverAnimationVertical}
         >
           <Menu>
-            <MenuItem primaryText="Add Activity" onTouchTap={this.handleRequestClose} />
+            <MenuItem primaryText="Add Activity" onClick={this.handleAddActivityOpen} />
             <Link to={`/relationship/user/${loggedInUser.id}/rel/${relationship.id}`}><MenuItem primaryText="View Activity History" /></Link>
             <Link to={`/relationship/user/${loggedInUser.id}/rel/${relationship.id}`}><MenuItem primaryText="Edit" /></Link>
           </Menu>
