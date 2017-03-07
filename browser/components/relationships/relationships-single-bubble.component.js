@@ -55,9 +55,6 @@ render(){
       onTouchTap={this.handleAddActivityClose}
     />
   ]
-
-
-
   return (
     <div className="bubble-container">
       <div className="bubble-container-center" onTouchTap={this.handleTouchTap}>
