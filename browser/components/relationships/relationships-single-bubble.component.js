@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Popover, { PopoverAnimationVertical } from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import { toggleAddActivity }  from '../forms/add-activity/add-activity.reducer';
 import AddActivityForm from '../forms/add-activity/add-activity.component';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -13,6 +12,7 @@ class SingleRelationship extends Component {
   constructor(props){
     super(props);
     this.state = {
+      modalOpen: false,
       open: false
     };
     this.handleTouchTap = this.handleTouchTap.bind(this);
@@ -22,11 +22,11 @@ class SingleRelationship extends Component {
   }
 
   handleAddActivityOpen() {
-    this.props.toggleAddActivityModalState(true);
+    this.setState({ modalOpen: true });
   }
 
   handleAddActivityClose() {
-    this.props.toggleAddActivityModalState(false);
+    this.setState({ modalOpen: false });
   }
 
   handleTouchTap(event){
@@ -55,6 +55,9 @@ render(){
       onTouchTap={this.handleAddActivityClose}
     />
   ]
+
+
+
   return (
     <div className="bubble-container">
       <div className="bubble-container-center" onTouchTap={this.handleTouchTap}>
@@ -79,7 +82,7 @@ render(){
           title="Add an Activity"
           actions={addActivityActions}
           modal={false}
-          open={addActivityStatus.showAddActivityModal}
+          open={this.state.modalOpen}
           onRequestClose={this.handleAddActivityClose}
         >
           <AddActivityForm  relationshipId={relationship.id} autoFocus="true" />
@@ -91,19 +94,11 @@ render(){
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapStateToProps = ( { addActivityStatus } ) => {
-	return {
-    addActivityStatus
-	};
+const mapStateToProps = (state) => {
 };
 
 
 const  mapDispatchToProps = (dispatch) => {
-  return {
-    toggleAddActivityModalState: (bool) => {
-      dispatch(toggleAddActivity(bool));
-    }
-  };
 };
 
 export default connect(

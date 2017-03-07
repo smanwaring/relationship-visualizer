@@ -28,11 +28,13 @@ class AddActivityForm extends Component {
   }
 
   submitForm() {
+    console.log("heyeyehfy", this.state);
     this.props.postNewActivity(this.state);
   }
 
   render() {
     let { type, date  } = this.state;
+    console.log("RELID", this.props.relationshipId);
     return (
       <div autoFocus="false">
         <SelectField

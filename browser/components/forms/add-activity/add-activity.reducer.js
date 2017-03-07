@@ -36,7 +36,7 @@ const initialState = {
 const reducer = (state = initialState, action ) => {
   switch (action.type) {
     case TOGGLE_ADD_ACTIVITY:
-      return Object.assign({}, state, { showAddActivityModal: action.bool });
+      return Object.assign({}, state, { open: action.bool });
     default:
       return state;
   }
