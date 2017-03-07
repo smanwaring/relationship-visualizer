@@ -8,23 +8,29 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import AddActivityForm from '../forms/add-activity/add-activity.component';
 import ChangeColor from '../forms/change-color/change-color.component';
+import toggleAddActivity from '../forms/add-activity/add-activity.reducer';
 
 /* -----------------    COMPONENT     ------------------ */
 class Relationship extends Component {
  constructor(props) {
     super(props);
     this.state = {
-      addActivityOpen: false,
       colorPickerOpen: false
-    }
+    };
     this.handleAddActivityOpen = this.handleAddActivityOpen.bind(this);
     this.handleAddActivityClose = this.handleAddActivityClose.bind(this);
     this.handleColorPickerOpen = this.handleColorPickerOpen.bind(this);
     this.handleColorPickerClose = this.handleColorPickerClose.bind(this);
   }
 
-  handleAddActivityOpen() {this.setState({ addActivityOpen: true })}
-  handleAddActivityClose() {this.setState({ addActivityOpen: false })}
+  handleAddActivityOpen() {
+    this.props.toggleAddActivityModal(true);
+  }
+
+  handleAddActivityClose() {
+    this.props.toggleAddActivityModal(false);
+  }
+
   handleColorPickerOpen() {
     this.setState({ colorPickerOpen: true });
   }
@@ -48,7 +54,7 @@ class Relationship extends Component {
         onTouchTap={this.handleColorPickerClose}
       />
     ]
-    const { selectedRelationship, loggedInUser, incrementScoreProp} = this.props;
+    const { selectedRelationship, loggedInUser, incrementScoreProp, addActivityStatus} = this.props;
     const { colorPickerModalStyle } = style;
     const relationshipStyle = {
       background: selectedRelationship.color,
@@ -66,7 +72,7 @@ class Relationship extends Component {
             title="Add an Activity"
             actions={addActivityActions}
             modal={false}
-            open={this.state.addActivityOpen}
+            open={addActivityStatus.showAddActivityModal}
             onRequestClose={this.handleAddActivityClose}
           >
             <AddActivityForm relationshipId={selectedRelationship.id} autoFocus="true" />
@@ -106,16 +112,18 @@ const style = {
 
 
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ( { selectedRelationship, loggedInUser } ) => {
+const mapStateToProps = ( { selectedRelationship, loggedInUser, addActivityStatus } ) => {
 	return {
     selectedRelationship,
-    loggedInUser
+    loggedInUser,
+    addActivityStatus
 	};
 };
 
 const  mapDispatchToProps = (dispatch) => {
   return {
-    incrementScoreProp: (relationship, loggedInUser) => dispatch(incrementScore(relationship, loggedInUser))
+    incrementScoreProp: (relationship, loggedInUser) => dispatch(incrementScore(relationship, loggedInUser)),
+    toggleAddActivityModal: (bool) => dispatch(toggleAddActivity(bool))
   };
 };
 

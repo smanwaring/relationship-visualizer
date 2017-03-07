@@ -1,23 +1,21 @@
 import axios from 'axios';
-import moment from 'moment';
 
 /* ------- ACTION TYPES/CONTSTANTS --------*/
-const SET_ACTIVITIES = "SET_ACTIVITIES";
+const SET_ACTIVITIES = 'SET_ACTIVITIES';
+const TOGGLE_ADD_ACTIVITY = 'TOGGLE_ADD_ACTIVITY';
 
 /* ------- ACTION CREATORS --------*/
 export const setActivities = (activities) => ({
   type: SET_ACTIVITIES,
   activities
-})
+});
+
+export const toggleAddActivity = (bool) => ({
+  type: TOGGLE_ADD_ACTIVITY,
+  bool
+});
 
 /* ------- DISPATCHERS --------*/
-export const fetchActivitiesByRelationship = ({relationshipId}) => dispatch => {
-  axios.get(`/api/activity/relationship/${relationshipId}`)
-  .then(activities => {
-    dispatch(setActivities(activities.data));
-  })
-}
-
 export const postNewActivity = ({ type, date, relationshipId }) => dispatch => {
   axios.post(`/api/activity`, {
     date: date,
@@ -30,16 +28,18 @@ export const postNewActivity = ({ type, date, relationshipId }) => dispatch => {
 };
 
 /* ------- INITIAL STATE --------*/
-const initialState = [];
+const initialState = {
+  open: false
+};
 
 /* ------- REDUCER --------*/
-const reducer = (state=initialState, { type, activities }) => {
-  switch(type) {
-    case SET_ACTIVITIES:
-      return activities;
+const reducer = (state = initialState, action ) => {
+  switch (action.type) {
+    case TOGGLE_ADD_ACTIVITY:
+      return Object.assign({}, state, { showAddActivityModal: action.bool });
     default:
       return state;
   }
-}
+};
 
 export default reducer;
