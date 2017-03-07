@@ -34,7 +34,6 @@ class AddActivityForm extends Component {
 
   render() {
     let { type, date  } = this.state;
-    console.log("RELID", this.props.relationshipId);
     return (
       <div autoFocus="false">
         <SelectField

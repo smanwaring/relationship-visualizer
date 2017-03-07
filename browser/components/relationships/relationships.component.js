@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RelationshipReminder from './relationships-reminder.component';
 import RelationshipsSingleBubble from './relationships-single-bubble.component';
-
+import SortBy from '../sort-by/sort-by.component';
 
 /* -----------------    COMPONENT     ------------------ */
 class Relationships extends Component {
@@ -14,20 +14,25 @@ class Relationships extends Component {
         {showAddReminder ?
           <RelationshipReminder />
           :
-        <ul className="flex-container bubble-padding">
-          {relationships && relationships.map( (relationship) => {
-            const relationshipStyle = {
-              background: relationship.color,
-              width: relationship.score,
-              height: relationship.score
-            };
-            return (
-                <li key={relationship.id}>
-                  <RelationshipsSingleBubble name={relationship.name} relationshipStyle={relationshipStyle} loggedInUser={loggedInUser} relationship={relationship} />
-                </li>
-            );
-            })}
-        </ul>
+          <div>
+            <div className="position-right">
+              <SortBy />
+            </div>
+            <ul className="flex-container bubble-padding">
+              {relationships && relationships.map( (relationship) => {
+                const relationshipStyle = {
+                  background: relationship.color,
+                  width: relationship.score,
+                  height: relationship.score
+                };
+                return (
+                    <li key={relationship.id}>
+                      <RelationshipsSingleBubble name={relationship.name} relationshipStyle={relationshipStyle} loggedInUser={loggedInUser} relationship={relationship} />
+                    </li>
+                );
+                })}
+          </ul>
+        </div>
         }
       </div>
     );
