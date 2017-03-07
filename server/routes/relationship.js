@@ -76,14 +76,20 @@ relationshipRouter.post('/', (req, res, next) => {
       color: req.body.color,
       userId: req.body.userId,
       type: req.body.type,
-      score: req.body.score
     }
   })
   .spread( (relationship, wasCreated) => {
     if (!wasCreated) {
       res.sendStatus(204);
     } else {
-      res.json(relationship);
+      let resObj = {
+        name: relationship.name,
+        userId: relationship.userId,
+        color: relationship.color,
+        type: relationship.tyle,
+        score: 50
+      };
+      res.json(resObj);
     }
   })
   .catch(next);
