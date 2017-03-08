@@ -142,6 +142,12 @@ Test Bubble
   padding-top: 50px;
 }
 
+.vam {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 
 /*
 Add relationships Reminder
@@ -217,4 +223,19 @@ Sort By
   margin-top: 20px;
   margin-right: 20px;
   z-index: 500;
+}
+
+/*
+right menu filter/search
+*/
+
+.in-line {
+  display: inline-block;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+
+.test {
+  margin-left: 60px;
 }
