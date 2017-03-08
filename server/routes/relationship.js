@@ -76,6 +76,7 @@ relationshipRouter.post('/', (req, res, next) => {
       color: req.body.color,
       userId: req.body.userId,
       type: req.body.type,
+      name: req.body.name
     }
   })
   .spread( (relationship, wasCreated) => {
