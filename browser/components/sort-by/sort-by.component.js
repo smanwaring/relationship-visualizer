@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -37,7 +37,7 @@ class SortBy extends Component {
   render() {
     return (
       <div>
-        <RaisedButton
+        <FlatButton
           onTouchTap={this.handleTouchTap}
           label="Sort by"
         />
@@ -49,8 +49,10 @@ class SortBy extends Component {
           onRequestClose={this.handleRequestClose}
         >
           <Menu>
-            <MenuItem primaryText="Size" />
-            <MenuItem primaryText="Name" />
+            <MenuItem primaryText="Smallest-Largest" onClick={() => {this.props.sortSmallToLarge(); this.handleRequestClose()}} />
+            <MenuItem primaryText="Largest-Smallest" onClick={() => {this.props.sortLargeToSmall(); this.handleRequestClose()}} />
+            <MenuItem primaryText="Name A-Z" onClick={() => {this.props.sortAsc(); this.handleRequestClose()}} />
+            <MenuItem primaryText="Name Z-A" onClick={() => {this.props.sortDesc(); this.handleRequestClose()}} />
           </Menu>
         </Popover>
       </div>

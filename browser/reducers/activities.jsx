@@ -20,7 +20,6 @@ export const fetchActivitiesByRelationship = ({relationshipId}) => dispatch => {
 
 export const postNewActivity = ({ type, time, date, score, relationshipId }) => dispatch => {
   // have to use moment.js to combine time and date, because material-ui separates the forms
-  console.log(relationshipId);
   let momentTime = moment(time);
   let momentDate = moment(date);
   let databaseDate = moment({
@@ -30,7 +29,6 @@ export const postNewActivity = ({ type, time, date, score, relationshipId }) => 
     hour: momentTime.hours(),
     minute: momentTime.minutes()
   })
-  console.log(databaseDate);
   axios.post(`/api/activity`, {
     date: databaseDate,
     relationshipId,

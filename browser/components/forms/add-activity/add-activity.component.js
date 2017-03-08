@@ -28,7 +28,6 @@ class AddActivityForm extends Component {
   }
 
   submitForm() {
-    console.log("heyeyehfy", this.state);
     this.props.postNewActivity(this.state);
   }
 

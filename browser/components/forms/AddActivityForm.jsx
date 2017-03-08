@@ -37,11 +37,9 @@ class AddActivityForm extends Component {
   }
 
   submitForm() {
-    console.log(this.state);
-    console.log(this.props);
     this.props.postNewActivity(this.state);
   }
-  
+
   render() {
     let { type, date, time } = this.state;
     return (
