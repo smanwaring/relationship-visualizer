@@ -57,7 +57,7 @@ render(){
   ]
   return (
     <div className="bubble-container">
-      <div className="bubble-container-center" onTouchTap={this.handleTouchTap}>
+      <div className="bubble-container-center vam" onTouchTap={this.handleTouchTap}>
         <div>{name}</div>
         <div className="flex-bubble" onTouchTap={this.handleTouchTap} style={relationshipStyle} />
       </div>

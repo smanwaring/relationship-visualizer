@@ -5,6 +5,7 @@ import RelationshipsSingleBubble from './relationships-single-bubble.component';
 import SortBy from '../sort-by/sort-by.component';
 import FlipMove from 'react-flip-move';
 import { sortRelationshipState } from './relationships.reducer';
+import FilterSearch from '../filter-search/filter-search.component';
 
 /* -----------------    COMPONENT     ------------------ */
 class Relationships extends Component {
@@ -14,12 +15,15 @@ class Relationships extends Component {
       enterLeaveAnimation: 'accordionHorizontal',
       order: 'asc',
       sortingMethod: 'chronological',
+      filterStr: '',
+      filteredRelationships: []
     };
     this.renderRelationships = this.renderRelationships.bind(this);
     this.sortAsc = this.sortAsc.bind(this);
     this.sortDesc = this.sortDesc.bind(this);
     this.sortSmallToLarge = this.sortSmallToLarge.bind(this);
     this.sortLargeToSmall = this.sortLargeToSmall.bind(this);
+    this.filterSearch = this.filterSearch.bind(this);
   }
 
   sortAsc(){
@@ -50,8 +54,20 @@ class Relationships extends Component {
     this.props.sortRelationships(relationshipsCopy);
   }
 
+  filterSearch(evt){
+    evt.preventDefault();
+    this.setState({filterStr: evt.target.value});
+    const relationshipsCopy = this.props.relationships.filter(relationship => {
+      if (relationship.name.includes(evt.target.value)){
+        return true;
+      }
+    });
+    this.setState({filteredRelationships: relationshipsCopy});
+  }
+
   renderRelationships() {
-    return this.props.relationships.map( (relationship) => {
+    const relationshipsToUse = this.state.filterStr !== '' ? this.state.filteredRelationships : this.props.relationships;
+    return relationshipsToUse.map( (relationship) => {
       const relationshipStyle = {
         background: relationship.color,
         width: relationship.score,
@@ -75,6 +91,7 @@ class Relationships extends Component {
           :
           <div>
             <div className="position-right">
+              <FilterSearch filterSearch={this.filterSearch} />
               <SortBy sortAsc={this.sortAsc} sortDesc={this.sortDesc} sortSmallToLarge={this.sortSmallToLarge} sortLargeToSmall={this.sortLargeToSmall} />
             </div>
               <FlipMove
