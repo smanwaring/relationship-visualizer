@@ -92,10 +92,12 @@ render(){
 /* -----------------    CONTAINER     ------------------ */
 
 const mapStateToProps = (state) => {
+  return {};
 };
 
 
 const  mapDispatchToProps = (dispatch) => {
+  return {};
 };
 
 export default connect(

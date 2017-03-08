@@ -6,6 +6,7 @@ const SET_RELATIONSHIPS = 'SET_RELATIONSHIPS';
 const SET_RELATIONSHIP = 'SET_RELATIONSHIP';
 const ADD_TO_SCORE = 'ADD_TO_SCORE';
 const ADD_RELATIONSHIP = 'ADD_RELATIONSHIP';
+const SORT_RELATIONSHIOP = 'SORT_RELATIONSHIOP';
 
 /* ------- ACTION CREATORS --------*/
 export const setRelationships = (relationships) => ({
@@ -17,6 +18,12 @@ export const concatRelationship = (createdRelationship) => ({
   type: ADD_RELATIONSHIP,
   createdRelationship
 });
+
+export const sortRelationshipState = (newRelationshipArr) => ({
+  type: SORT_RELATIONSHIOP,
+  newRelationshipArr
+});
+
 
 
 /* ------- DISPATCHERS --------*/
@@ -49,6 +56,8 @@ const reducer = (state = initialState, action) => {
       return action.relationships;
     case ADD_RELATIONSHIP:
       return [...state, action.createdRelationship];
+    case SORT_RELATIONSHIOP:
+      return action.newRelationshipArr;
     default:
       return state;
   }

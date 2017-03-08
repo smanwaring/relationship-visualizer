@@ -201,3 +201,20 @@ add relationship modal
   .main    { order: 2; }
 }
 
+
+/*
+*
+*
+Sort By
+*
+*
+*/
+
+.position-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 20px;
+  margin-right: 20px;
+  z-index: 500;
+}
