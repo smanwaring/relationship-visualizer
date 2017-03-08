@@ -6,6 +6,7 @@ import SortBy from '../sort-by/sort-by.component';
 import FlipMove from 'react-flip-move';
 import { sortRelationshipState } from './relationships.reducer';
 import FilterSearch from '../filter-search/filter-search.component';
+import TextField from 'material-ui/TextField';
 
 /* -----------------    COMPONENT     ------------------ */
 class Relationships extends Component {
@@ -91,20 +92,20 @@ class Relationships extends Component {
           :
           <div>
             <div className="position-right">
-              <FilterSearch filterSearch={this.filterSearch} />
-              <SortBy sortAsc={this.sortAsc} sortDesc={this.sortDesc} sortSmallToLarge={this.sortSmallToLarge} sortLargeToSmall={this.sortLargeToSmall} />
+              <div className="in-line"><FilterSearch filterSearch={this.filterSearch} /></div>
+              <div className="in-line"><SortBy  sortAsc={this.sortAsc} sortDesc={this.sortDesc} sortSmallToLarge={this.sortSmallToLarge} sortLargeToSmall={this.sortLargeToSmall} /></div>
             </div>
-              <FlipMove
-                staggerDurationBy="30"
-                duration={500}
-                enterAnimation={this.state.enterLeaveAnimation}
-                leaveAnimation={this.state.enterLeaveAnimation}
-                typeName="ul"
-                className="flex-container bubble-padding"
-              >
-                { this.renderRelationships() }
-              </FlipMove>
-        </div>
+            <FlipMove
+              staggerDurationBy="30"
+              duration={500}
+              enterAnimation={this.state.enterLeaveAnimation}
+              leaveAnimation={this.state.enterLeaveAnimation}
+              typeName="ul"
+              className="flex-container bubble-padding"
+            >
+              { this.renderRelationships() }
+            </FlipMove>
+          </div>
         }
       </div>
     );

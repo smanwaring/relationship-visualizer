@@ -12,7 +12,7 @@ class FilterSearch extends Component {
   render() {
     return (
       <div>
-        <TextField hintText="Search Relationships" onChange={(evt) => this.props.filterSearch(evt)} />
+        <TextField underlineShow={false} hintText="Search Relationships" onChange={(evt) => this.props.filterSearch(evt)} />
       </div>
     );
   }

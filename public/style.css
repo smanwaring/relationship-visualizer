@@ -224,3 +224,18 @@ Sort By
   margin-right: 20px;
   z-index: 500;
 }
+
+/*
+right menu filter/search
+*/
+
+.in-line {
+  display: inline-block;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+
+.test {
+  margin-left: 60px;
+}
