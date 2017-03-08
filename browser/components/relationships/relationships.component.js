@@ -57,9 +57,8 @@ class Relationships extends Component {
         width: relationship.score,
         height: relationship.score
       };
-      const classes = 'grid';
       return (
-        <li key={relationship.id} className={classes}>
+        <li key={relationship.id}>
           <RelationshipsSingleBubble name={relationship.name} relationshipStyle={relationshipStyle} loggedInUser={this.props.loggedInUser} relationship={relationship} />
         </li>
       );
