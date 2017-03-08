@@ -58,7 +58,7 @@ class Relationships extends Component {
     evt.preventDefault();
     this.setState({filterStr: evt.target.value});
     const relationshipsCopy = this.props.relationships.filter(relationship => {
-      if (relationship.name.includes(evt.target.value)){
+      if (relationship.name.toLowerCase().includes(evt.target.value.toLowerCase())){
         return true;
       }
     });
