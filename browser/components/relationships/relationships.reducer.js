@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { animateBubbles, expandBubble } from '../../d3/bubbleD3';
 
 /* ------- ACTION TYPES/CONTSTANTS --------*/
 const SET_RELATIONSHIPS = 'SET_RELATIONSHIPS';
@@ -7,6 +6,7 @@ const SET_RELATIONSHIP = 'SET_RELATIONSHIP';
 const ADD_TO_SCORE = 'ADD_TO_SCORE';
 const ADD_RELATIONSHIP = 'ADD_RELATIONSHIP';
 const SORT_RELATIONSHIP = 'SORT_RELATIONSHIP';
+const CHANGE_COLOR = 'CHANGE_COLOR';
 
 /* ------- ACTION CREATORS --------*/
 export const setRelationships = (relationships) => ({
@@ -33,16 +33,16 @@ export const fetchRelationshipsByUser = ({ id }) => dispatch => {
   });
 };
 
-export const incrementScore = (relationship, user) => dispatch => {
-  axios.put(`/api/relationship/${relationship.id}`, { score: relationship.score + 5 })
-  .then(relationship => {
-    animateBubbles(relationship.data);
-    expandBubble(relationship.data);
-    return axios.get(`/api/relationship/user/${user.id}`);
+export const editRelationship = (relationshipId, colorHex, name) => (dispatch, getState) => {
+  return axios.put(`/api/relationship/${relationshipId}`, { color: colorHex, name })
+  .then(() => {
+    let userId = getState().loggedInUser.id;
+    return axios.get(`/api/relationship/user/${userId}`)
   })
-  .then(relationships => {
+  .then((relationships) => {
     dispatch(setRelationships(relationships.data));
-  });
+  })
+  .catch(err => console.error(err))
 };
 
 /* ------- INITIAL STATE --------*/
