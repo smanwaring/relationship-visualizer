@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { animateBubbles, expandBubble } from '../../d3/bubbleD3';
 
 /* ------- ACTION TYPES/CONTSTANTS --------*/
 const SET_RELATIONSHIPS = 'SET_RELATIONSHIPS';
@@ -29,18 +28,6 @@ export const sortRelationshipState = (newRelationshipArr) => ({
 /* ------- DISPATCHERS --------*/
 export const fetchRelationshipsByUser = ({ id }) => dispatch => {
   return axios.get(`/api/relationship/user/${id}`)
-  .then(relationships => {
-    dispatch(setRelationships(relationships.data));
-  });
-};
-
-export const incrementScore = (relationship, user) => dispatch => {
-  axios.put(`/api/relationship/${relationship.id}`, { score: relationship.score + 5 })
-  .then(relationship => {
-    animateBubbles(relationship.data);
-    expandBubble(relationship.data);
-    return axios.get(`/api/relationship/user/${user.id}`);
-  })
   .then(relationships => {
     dispatch(setRelationships(relationships.data));
   });
