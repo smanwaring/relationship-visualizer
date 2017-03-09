@@ -1,6 +1,5 @@
 import React, { PropTypes as T } from 'react';
 // import styles from './styles.module.css'
-import { fetchImage } from '../utils/FetchBackgroundImage';
 import axios from 'axios';
 
 const height = window.screen.availHeight;
@@ -23,7 +22,7 @@ class Root extends React.Component {
       });
     }
     return (
-      <div style={style.image}>
+      <div style={style.image} id="root">
         <div style={style.layer}>
           {children}
         </div>
@@ -36,7 +35,8 @@ const style = {
   image: {
     backgroundImage: `url(https://unsplash.it/${width}/${height}/?random)`, 
     width: '100%',
-    height: '100%'
+    height: '100%',
+    color: 'white'
   },
   layer: {
     zIndex: '1',
