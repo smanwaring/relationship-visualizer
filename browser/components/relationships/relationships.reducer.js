@@ -7,6 +7,7 @@ const SET_RELATIONSHIP = 'SET_RELATIONSHIP';
 const ADD_TO_SCORE = 'ADD_TO_SCORE';
 const ADD_RELATIONSHIP = 'ADD_RELATIONSHIP';
 const SORT_RELATIONSHIP = 'SORT_RELATIONSHIP';
+const CHANGE_COLOR = 'CHANGE_COLOR';
 
 /* ------- ACTION CREATORS --------*/
 export const setRelationships = (relationships) => ({
@@ -43,6 +44,18 @@ export const incrementScore = (relationship, user) => dispatch => {
   .then(relationships => {
     dispatch(setRelationships(relationships.data));
   });
+};
+
+export const editRelationship = (relationshipId, colorHex, name) => (dispatch, getState) => {
+  return axios.put(`/api/relationship/${relationshipId}`, { color: colorHex, name })
+  .then(() => {
+    let userId = getState().loggedInUser.id;
+    return axios.get(`/api/relationship/user/${userId}`)
+  })
+  .then((relationships) => {
+    dispatch(setRelationships(relationships.data));
+  })
+  .catch(err => console.error(err))
 };
 
 /* ------- INITIAL STATE --------*/

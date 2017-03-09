@@ -28,7 +28,10 @@ class AddActivityForm extends Component {
   }
 
   submitForm() {
-    this.props.postNewActivity(this.state);
+    this.props.postNewActivity(this.state)
+    .then((() => {
+      this.props.handleAddActivityClose();
+    }))
   }
 
   render() {

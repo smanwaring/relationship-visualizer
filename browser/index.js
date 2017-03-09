@@ -23,12 +23,10 @@ import Homepage from './components/Homepage';
 import Login from './components/login/login.component';
 import ActivityInfo from './components/ActivityInfo';
 import Relationships from './components/relationships/relationships.component';
-import Relationship from './components/relationship/relationship.component';
 
 /*--------- ACTION CREATORS --------- */
 import { fetchRelationshipsByUser } from './components/relationships/relationships.reducer';
 import { fetchActivitiesByRelationship } from './reducers/activities';
-import { fetchSelectedRelationship } from './components/relationship/relationship.reducer';
 import { findOrCreateUser } from './components/login/login.reducer';
 
 /*--------- ON-ENTER HOOKS ---------- */
@@ -73,10 +71,6 @@ const onRelationshipsEnter = (nextState) => {
 	});
 };
 
-const onOneRelationshipEnter = ({ params }) => {
-	store.dispatch(fetchSelectedRelationship({ relationshipId: params.relationshipId, userId: params.userId }));
-};
-
 ReactDOM.render(
   <Provider store={store}>
 		<MuiThemeProvider>
@@ -84,7 +78,6 @@ ReactDOM.render(
 			<Route path="/" component={Root} auth={auth}>
 				<Route path="/home" component={Homepage} onEnter={requireAuth}>
 					<Route path="/relationships" component={Relationships}  onEnter={onRelationshipsEnter} />
-					<Route path="/relationship/user/:userId/rel/:relationshipId" component={Relationship} onEnter={onOneRelationshipEnter} />
         	<Route path="/relationship/:id/activities" component={ActivityInfo} onEnter={onActivityInfoEnter} />
 				</Route>
 				<Route path="/login" component={Login} />

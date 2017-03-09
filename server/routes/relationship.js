@@ -84,6 +84,7 @@ relationshipRouter.post('/', (req, res, next) => {
       res.sendStatus(204);
     } else {
       let resObj = {
+        id: relationship.id,
         name: relationship.name,
         userId: relationship.userId,
         color: relationship.color,
@@ -98,6 +99,7 @@ relationshipRouter.post('/', (req, res, next) => {
 
 // PUT/UPDATE a relationship
 relationshipRouter.put('/:relationshipID', (req, res, next) => {
+  console.log(req.body);
   db.model('relationship').findById(req.params.relationshipID)
   .then(relationship => {
     return relationship.update(req.body);
