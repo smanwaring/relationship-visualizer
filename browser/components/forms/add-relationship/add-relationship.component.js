@@ -43,7 +43,7 @@ class AddRelationshipForm extends Component {
    addRelationship() {
      let relationshipInfo = {
        userId: this.props.loggedInUser.id,
-       name: this.state.name,
+       name: this.state.name.trim(),
        type: this.state.type,
        color: this.state.color
      };
