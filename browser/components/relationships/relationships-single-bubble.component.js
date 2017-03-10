@@ -97,7 +97,7 @@ class SingleRelationship extends Component {
           >
             <Menu>
               <MenuItem primaryText="Add Activity" onClick={this.handleAddActivityOpen} />
-              <Link to={`/relationship/user/${loggedInUser.id}/rel/${relationship.id}`}><MenuItem primaryText="View Activity History" /></Link>
+              <Link to={`/relationships/user/${loggedInUser.id}/rel/${relationship.id}`}><MenuItem primaryText="View Activity History" /></Link>
               <MenuItem primaryText="Edit Relationship" onClick={this.handleEditActivityOpen} />
             </Menu>
           </Popover>

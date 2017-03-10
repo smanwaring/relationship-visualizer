@@ -21,10 +21,13 @@ import Root from './components/Root';
 import Homepage from './components/Homepage';
 import Login from './components/login/login.component';
 import Relationships from './components/relationships/relationships.component';
+import Activities from './components/activities/activities.component';
 
 /*--------- ACTION CREATORS --------- */
 import { fetchRelationshipsByUser } from './components/relationships/relationships.reducer';
 import { findOrCreateUser } from './components/login/login.reducer';
+import { fetchRelationshipById } from './components/relationships/selectedRelationship.reducer';
+import { fetchActivitiesByRelationshipId } from './components/activities/activities.reducer';
 
 /*--------- ON-ENTER HOOKS ---------- */
 const requireAuth = (nextState, replace) => {
@@ -44,9 +47,13 @@ const requireAuth = (nextState, replace) => {
   }
 };
 
-const onActivityInfoEnter = ({ params }) => {
-	store.dispatch(fetchActivitiesByRelationship({ relationshipId: params.id }));
-	store.dispatch(fetchSelectedRelationship({ relationshipId: params.id }));
+const onActivitiesEnter = ({ params }) => {
+	store.dispatch(fetchRelationshipById({ relationshipId: params.relationshipId, userId: params.loggedInUserId }))
+	.then(() => {
+		console.log("YO YO YO YO YO YO YO")
+		store.dispatch(fetchActivitiesByRelationshipId({ relationshipId: params.relationshipId }));
+	})
+	.catch(err => console.error(err));
 };
 
 const onRelationshipsEnter = (nextState) => {
@@ -61,6 +68,7 @@ ReactDOM.render(
 			<Route path="/" component={Root} auth={auth}>
 				<Route path="/home" component={Homepage} onEnter={requireAuth}>
 					<Route path="/relationships" component={Relationships}  onEnter={onRelationshipsEnter} />
+					<Route path='/relationships/user/:loggedInUserId/rel/:relationshipId' component={Activities} onEnter={onActivitiesEnter}/>
 				</Route>
 				<Route path="/login" component={Login} />
 				<IndexRedirect to="/login" />
