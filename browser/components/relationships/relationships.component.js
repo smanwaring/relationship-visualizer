@@ -69,6 +69,7 @@ class Relationships extends Component {
   }
 
   renderRelationships() {
+    console.log(this.state.filteredRelationships);
     const relationshipsToUse = this.state.filterStr !== '' ? this.state.filteredRelationships : this.props.relationships;
     return relationshipsToUse.map( (relationship) => {
       const relationshipStyle = {
@@ -97,6 +98,8 @@ class Relationships extends Component {
               <div className="in-line"><FilterSearch filterSearch={this.filterSearch} /></div>
               <div className="in-line"><SortBy  sortAsc={this.sortAsc} sortDesc={this.sortDesc} sortSmallToLarge={this.sortSmallToLarge} sortLargeToSmall={this.sortLargeToSmall} /></div>
             </div>
+            <Greeting loggedInUser={loggedInUser}/>
+            <GoogleSearch />
             <FlipMove
               staggerDurationBy="30"
               duration={500}
@@ -105,8 +108,6 @@ class Relationships extends Component {
               typeName="ul"
               className="flex-container bubble-padding"
             >
-              <Greeting loggedInUser={loggedInUser}/>
-              <GoogleSearch />
               { this.renderRelationships() }
             </FlipMove>
           </div>
