@@ -12,8 +12,7 @@ export default ({ loggedInUser }) => {
 
 const style = {
   display: 'block',
-  marginLeft: '3em',
-  marginTop: '1em',
   width: '100%',
-  textAlign: 'left'
-}
+  textAlign: 'center'
+};
+
