@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AddRelationshipForm from './forms/add-relationship/add-relationship.component';
 import RaisedButton from 'material-ui/RaisedButton';
 import MainMenu from './main-menu/main-menu.component';
+import GoogleSearch from './google-search/google-search.component';
 
 
 class Homepage extends React.Component {
@@ -11,8 +12,8 @@ class Homepage extends React.Component {
     const { relationships, selectedRelationship } = this.props;
     return (
       <div>
-        <div><MainMenu auth={this.props.auth}/>
-        </div>
+        <div className="in-line"><MainMenu auth={this.props.auth}/></div>
+        <div className="in-line"><GoogleSearch /></div>
           <div>
             {
               this.props.children && React.cloneElement(this.props.children, {
