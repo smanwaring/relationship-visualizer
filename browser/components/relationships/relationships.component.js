@@ -8,6 +8,7 @@ import { sortRelationshipState } from './relationships.reducer';
 import FilterSearch from '../filter-search/filter-search.component';
 import TextField from 'material-ui/TextField';
 import Greeting from '../greeting/greeting.component.js';
+import GoogleSearch from '../google-search/google-search.component';
 
 /* -----------------    COMPONENT     ------------------ */
 class Relationships extends Component {
@@ -105,6 +106,7 @@ class Relationships extends Component {
               className="flex-container bubble-padding"
             >
               <Greeting loggedInUser={loggedInUser}/>
+              <GoogleSearch />
               { this.renderRelationships() }
             </FlipMove>
           </div>
