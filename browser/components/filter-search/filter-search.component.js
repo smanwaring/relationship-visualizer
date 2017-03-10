@@ -12,7 +12,13 @@ class FilterSearch extends Component {
   render() {
     return (
       <div>
-        <TextField hintStyle={{ color: 'white' }} underlineShow={false} hintText="Search Relationships" onChange={(evt) => this.props.filterSearch(evt)} />
+        <TextField 
+          hintStyle={{ color: 'white' }} 
+          underlineFocusStyle={{ backgroundColor: 'white' }} 
+          inputStyle={{ color: 'white' }}
+          underlineShow={false} 
+          hintText="Search Relationships" 
+          onChange={(evt) => this.props.filterSearch(evt)} />
       </div>
     );
   }

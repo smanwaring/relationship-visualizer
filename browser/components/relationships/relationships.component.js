@@ -7,6 +7,7 @@ import FlipMove from 'react-flip-move';
 import { sortRelationshipState } from './relationships.reducer';
 import FilterSearch from '../filter-search/filter-search.component';
 import TextField from 'material-ui/TextField';
+import Greeting from '../greeting/greeting.component.js';
 
 /* -----------------    COMPONENT     ------------------ */
 class Relationships extends Component {
@@ -103,6 +104,7 @@ class Relationships extends Component {
               typeName="ul"
               className="flex-container bubble-padding"
             >
+              <Greeting loggedInUser={loggedInUser}/>
               { this.renderRelationships() }
             </FlipMove>
           </div>

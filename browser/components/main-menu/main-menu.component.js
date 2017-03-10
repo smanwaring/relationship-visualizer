@@ -64,6 +64,7 @@ class MainMenu extends React.Component {
 									iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
 									anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
 									targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+									iconStyle={{ color: 'white' }}
 							>
 									<MenuItem onClick={ () => this.handleOpen('showAddRelationshipModal') } primaryText="Add a new Relationship" />
 									<Divider />
