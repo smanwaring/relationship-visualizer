@@ -40,6 +40,7 @@ class SortBy extends Component {
         <FlatButton
           onTouchTap={this.handleTouchTap}
           label="Sort by"
+          labelStyle={{ color: 'white' }}
         />
         <Popover
           open={this.state.open}

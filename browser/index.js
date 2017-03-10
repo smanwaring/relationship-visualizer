@@ -14,6 +14,7 @@ const auth = new AuthService('tI3Yb8b6o4t7iOXLO4vffTYVpsHptMjl', 'stephaniemanwa
 
 // allows onTapTouch() to work for React Components
 injectTapEventPlugin();
+import customTheme from './utils/muiTheme';
 
 /*------ COMPONENTS/CONTAINERS ------ */
 import Root from './components/Root';
@@ -55,7 +56,7 @@ const onRelationshipsEnter = (nextState) => {
 
 ReactDOM.render(
   <Provider store={store}>
-		<MuiThemeProvider>
+		<MuiThemeProvider muiTheme={customTheme} >
 	    <Router history={browserHistory}>
 			<Route path="/" component={Root} auth={auth}>
 				<Route path="/home" component={Homepage} onEnter={requireAuth}>

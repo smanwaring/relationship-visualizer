@@ -84,7 +84,7 @@ class SingleRelationship extends Component {
     return (
       <div className="bubble-container">
         <div className="bubble-container-center vam" onTouchTap={this.handleTouchTap}>
-          <div>{name}</div>
+          <p>{name}</p>
           <div className="flex-bubble" onTouchTap={this.handleTouchTap} style={relationshipStyle} />
         </div>
           <Popover
