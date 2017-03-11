@@ -68,6 +68,8 @@ class MainMenu extends React.Component {
 							>
 									<MenuItem onClick={ () => this.handleOpen('showAddRelationshipModal') } primaryText="Add a new Relationship" />
 									<Divider />
+									<MenuItem onClick={ () => browserHistory.push('/relationships')} primaryText="View All Relationships" />
+									<Divider />
 									<MenuItem onClick={ () => this.handleOpen('showSettingsModal') } primaryText="Settings" />
 									<Divider />
 									<MenuItem onClick={ this.logout } primaryText="Sign out" />

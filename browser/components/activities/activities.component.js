@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
+import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import RelationshipBubble from '../relationship-bubble/relationship-bubble.component';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
 
@@ -50,6 +54,11 @@ class Activities extends Component {
 
     return (
       <div>
+        <div>
+          <IconButton tooltip="Go Back" iconStyle={{ color: 'white' }} onClick={() => browserHistory.push('/relationships')} >
+            <ArrowBack />
+          </IconButton>
+        </div>
         <div style={infoStyle}>
           <div className="bubble-container-center vam">
             <div className="flex-bubble" style={bubbleStyle}/>
@@ -102,14 +111,14 @@ const style = {
     display: 'inline-block',
     paddingLeft: "12.5%",
     paddingRight: "12.5%",
-    marginTop: "5em",
-    marginBottom: "5em",
+    marginTop: "3em",
+    marginBottom: "3em",
     verticalAlign: 'top',
     height: '15%',
     width: "50%"
   },
   chartStyle: {
-    marginTop: '10em',
+    marginTop: '5em',
     display: 'inline-block',
     width: '50%'
   }
