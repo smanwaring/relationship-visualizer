@@ -49,8 +49,7 @@ const requireAuth = (nextState, replace) => {
 
 const onActivitiesEnter = ({ params }) => {
 	store.dispatch(fetchRelationshipById({ relationshipId: params.relationshipId, userId: params.loggedInUserId }))
-	.then(() => {
-		console.log("YO YO YO YO YO YO YO")
+	.then((res) => {
 		store.dispatch(fetchActivitiesByRelationshipId({ relationshipId: params.relationshipId }));
 	})
 	.catch(err => console.error(err));

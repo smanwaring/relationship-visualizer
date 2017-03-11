@@ -13,7 +13,6 @@ export const setActivities = (activities) => ({
 export const fetchActivitiesByRelationshipId = ({ relationshipId }) => dispatch => {
   return axios.get(`/api/activity/relationship/${relationshipId}`)
   .then(activities => {
-    console.log("DATAAAA", activities.data);
     dispatch(setActivities(activities.data));
   })
   .catch(err => console.error(err));
