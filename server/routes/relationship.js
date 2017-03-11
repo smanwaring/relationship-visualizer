@@ -30,7 +30,8 @@ relationshipRouter.get('/user/:userId/rel/:relationshipId', (req, res, next) => 
           name: relationship.name,
           type: relationship.type,
           color: relationship.color,
-          id: relationship.id
+          id: relationship.id,
+          createdAt: relationship.createdAt
       };
       relationshipObj.score = scoreGenerator(relationship.activities);
       return relationshipObj;
