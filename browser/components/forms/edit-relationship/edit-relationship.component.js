@@ -28,7 +28,6 @@ class EditRelationship extends Component {
 
   handleSubmit(color, event) {
     const { editRelationship, relationship, handleClose } = this.props;
-    console.log(this.state.name);
     editRelationship(relationship.id, this.state.color, this.state.name);
     handleClose();
   }

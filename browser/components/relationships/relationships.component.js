@@ -68,7 +68,6 @@ class Relationships extends Component {
   }
 
   renderRelationships() {
-    console.log(this.state.filteredRelationships);
     const relationshipsToUse = this.state.filterStr !== '' ? this.state.filteredRelationships : this.props.relationships;
     return relationshipsToUse.map( (relationship) => {
       const relationshipStyle = {
