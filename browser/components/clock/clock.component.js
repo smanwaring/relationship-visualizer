@@ -24,9 +24,11 @@ class Clock extends Component {
   }
 
   render() {
+    var options = { month: 'long', day: 'numeric' };
+
     return (
       <div>
-        <h3>{this.state.date.toLocaleDateString()} | {this.state.date.toLocaleTimeString()}</h3>
+        <h3>{this.state.date.toLocaleDateString('en-US', options)} | {this.state.date.toLocaleTimeString()}</h3>
       </div>
     );
   }
