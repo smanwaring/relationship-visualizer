@@ -8,9 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Divider from 'material-ui/Divider';
 import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
 import AddRelationshipForm from '../forms/add-relationship/add-relationship.component';
-import SettingsForm from '../forms/SettingsForm';
 import { toggleStateModal } from './main-menu.reducer';
 
 /* -----------------    COMPONENT     ------------------ */
@@ -40,24 +38,8 @@ class MainMenu extends React.Component {
 
 
     render() {
-			const { showAddRelationshipModal, showSettingsModal } = this.props.mainMenu;
-
-			const addRelationshipActions = [
-				/*<FlatButton
-					label="Cancel"
-					primary={true}
-					keyboardFocused={true}
-					onTouchTap={ () => this.handleClose('showAddRelationship') }
-				/>*/
-			]
-			const settingsActions = [
-				<FlatButton
-					label="Cancel"
-					primary={true}
-					keyboardFocused={true}
-					onTouchTap={ () => this.handleClose('showSettingsModal') }
-				/>
-			]
+			const { showAddRelationshipModal } = this.props.mainMenu;
+			const addRelationshipActions = [];
         return (
             <div>
 							<IconMenu
@@ -69,8 +51,6 @@ class MainMenu extends React.Component {
 									<MenuItem onClick={ () => this.handleOpen('showAddRelationshipModal') } primaryText="Add a new Relationship" />
 									<Divider />
 									<MenuItem onClick={ () => browserHistory.push('/relationships')} primaryText="View All Relationships" />
-									<Divider />
-									<MenuItem onClick={ () => this.handleOpen('showSettingsModal') } primaryText="Settings" />
 									<Divider />
 									<MenuItem onClick={ this.logout } primaryText="Sign out" />
 							</IconMenu>
@@ -84,17 +64,6 @@ class MainMenu extends React.Component {
 								onRequestClose={ () => this.handleClose('showAddRelationshipModal') }
 							>
 								<AddRelationshipForm />
-							</Dialog>
-
-							{/* settings dialog modal */}
-							<Dialog
-								title="Settings"
-								actions={ settingsActions }
-								modal={ false }
-								open={ showSettingsModal }
-								onRequestClose={ () => this.handleClose('showSettingsModal') }
-							>
-								<SettingsForm />
 							</Dialog>
             </div>
         );
