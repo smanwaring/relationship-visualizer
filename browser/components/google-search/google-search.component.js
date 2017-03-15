@@ -16,11 +16,6 @@ export default () => {
           hintText="Search Google"
           name="q"
         />
-        <FlatButton 
-          type="submit"
-          labelStyle={{ color: 'white' }}
-          label="Go"
-        />
       </form>
     </div>
   )
@@ -30,5 +25,5 @@ const style = {
   marginLeft: "3em",
   marginTop: "1em",
   display: 'block',
-  width: '100%'
-}
+  width: '100%',
+};
