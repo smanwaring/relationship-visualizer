@@ -71,7 +71,6 @@ class SingleRelationship extends Component {
 
   render(){
     const { loggedInUser, relationship, relationshipStyle, name, addActivityStatus } = this.props;
-    
     const addActivityActions = [
       <FlatButton
         label="Cancel"
