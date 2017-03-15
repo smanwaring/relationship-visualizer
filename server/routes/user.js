@@ -28,7 +28,8 @@ userRouter.post('/', (req, res, next) => {
       email: req.body.email,
     },
     defaults: {
-      name: req.body.name,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       authId: req.body.authId
     }
   })
@@ -41,15 +42,6 @@ userRouter.post('/', (req, res, next) => {
   })
   .catch(next);
 });
-
-// // create a new user
-// userRouter.post('/', (req, res, next) => {
-//   db.model('user').create(req.body)
-//   .then(user => {
-//     res.status(201).json(user)
-//   })
-//   .catch(next);
-// })
 
 // update an user
 userRouter.put('/:userID', (req, res, next) => {

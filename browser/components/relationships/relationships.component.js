@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RelationshipReminder from './relationships-reminder.component';
 import RelationshipsSingleBubble from './relationships-single-bubble.component';
 import SortBy from '../sort-by/sort-by.component';
 import FlipMove from 'react-flip-move';
@@ -85,30 +84,25 @@ class Relationships extends Component {
 
   render() {
     const { relationships, loggedInUser } = this.props;
-    const showAddReminder = relationships.length < 1;
     return (
       <div>
-        {showAddReminder ?
-          <RelationshipReminder />
-          :
-          <div>
-            <div className="position-right">
-              <div className="in-line"><FilterSearch filterSearch={this.filterSearch} /></div>
-              <div className="in-line"><SortBy  sortAsc={this.sortAsc} sortDesc={this.sortDesc} sortSmallToLarge={this.sortSmallToLarge} sortLargeToSmall={this.sortLargeToSmall} /></div>
-            </div>
-            <div> <Greeting loggedInUser={loggedInUser} /></div>
-            <FlipMove
-              staggerDurationBy="30"
-              duration={500}
-              enterAnimation={this.state.enterLeaveAnimation}
-              leaveAnimation={this.state.enterLeaveAnimation}
-              typeName="ul"
-              className="flex-container bubble-padding"
-            >
-              { this.renderRelationships() }
-            </FlipMove>
+        <div>
+          <div className="position-right">
+            <div className="in-line"><FilterSearch filterSearch={this.filterSearch} /></div>
+            <div className="in-line"><SortBy  sortAsc={this.sortAsc} sortDesc={this.sortDesc} sortSmallToLarge={this.sortSmallToLarge} sortLargeToSmall={this.sortLargeToSmall} /></div>
           </div>
-        }
+          <div> <Greeting loggedInUser={loggedInUser} relationships={relationships} /></div>
+          <FlipMove
+            staggerDurationBy="30"
+            duration={500}
+            enterAnimation={this.state.enterLeaveAnimation}
+            leaveAnimation={this.state.enterLeaveAnimation}
+            typeName="ul"
+            className="flex-container bubble-padding"
+          >
+            { this.renderRelationships() }
+          </FlipMove>
+        </div>
       </div>
     );
   }
