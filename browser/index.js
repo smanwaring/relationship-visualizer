@@ -36,7 +36,8 @@ const requireAuth = (nextState, replace) => {
   } else {
 		const user = auth.getProfile();
 		const userDetails = {
-				name: `${user.given_name} ${user.family_name}`,
+				firstName: `${user.given_name}`,
+				lastName: `${user.family_name}`,
 				email: user.email,
 				authId: user.user_id
 		};
